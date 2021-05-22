@@ -5,3 +5,13 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+TechHub.delete_all
+Country.delete_all
+
+puts 'Creating TechHub'
+@europe = TechHub.new(name: "Europe")
+@europe.save!
+
+puts 'Creating countries'
+@france = Country.new(name: "France")
+@france.save!
