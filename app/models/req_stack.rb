@@ -1,0 +1,2 @@
+class ReqStack < ApplicationRecord
+end
