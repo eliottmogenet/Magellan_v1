@@ -1,0 +1,9 @@
+<div style="background-color: black;">
+
+  <% @candidates.each do |candidate| %>
+       <p><%= link_to map_candidate_path(candidate) do %>
+        <%= candidate.first_name %><%= candidate.last_name %><p>
+      <% end %>
+  <% end %>
+
+</div>
