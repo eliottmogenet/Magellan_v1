@@ -47,41 +47,35 @@
   width: 40px;
 }
 </style>
-      <div class="div-profile">
-        <div class="head-profile">
-          <div class="id-info"></div>
-          <p><%= @candidate.first_name + "" + @candidate.last_name %></p>
-        <p><%= @candidate.job %></p>
-        <p><%= @candidate.location %></p>
-          <div class="stacks-info"></div>
-        </div>
-        <div class="bio-challenges">
-          <div class="candidate_nav">
-            <ul class="nav">
-            <li class="nav-item">
-              <a class="nav-link active" id="pills-challenges-tab" data-toggle="pill" href="#pills-challenges" role="tab" aria-controls="pills-home" aria-selected="true">Challenges</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" id="pills-steps-tab" data-toggle="pill" href="#pills-steps" role="tab" aria-controls="pills-profile" aria-selected="false">Next steps</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" id="pills-background-tab" data-toggle="pill" href="#pills-background" role="tab" aria-controls="pills-contact" aria-selected="false">Background</a>
-            </li>
-          </ul>
-          </div>
-        </div>
-        <div class="tab-content" id="pills-tabContent">
-  <div class="tab-pane fade show active" id="pills-challenges" role="tabpanel" aria-labelledby="pills-home-tab">
-    <p>Hello</p>
-  </div>
-  <div class="tab-pane fade" id="pills-steps" role="tabpanel" aria-labelledby="pills-profile-tab">...</div>
-  <div class="tab-pane fade" id="pills-background" role="tabpanel" aria-labelledby="pills-contact-tab">...</div>
+  <h1>#<%= @chatroom.name %></h1>
+<div id="messages" data-chatroom-id="<%= @chatroom.id %>">
+  <% @chatroom.messages.each do |message| %>
+    <div class="message-container" id="message-<%= message.id %>">
+      <i class="author">
+        <span><%= message.user.first_name %></span>
+        <small><%= message.created_at.strftime("%a %b %e at %l:%M%p") %></small>
+      </i>
+      <p><%= message.content %></p>
+    </div>
+  <% end %>
 </div>
-        <div class="country-desc">
-          <p><%= @candidate.timezone %></p>
-          <%= @candidate.country.name %>
-        </div>
-      </div>
     </div>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

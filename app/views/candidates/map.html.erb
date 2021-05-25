@@ -47,6 +47,7 @@
   width: 40px;
 }
 </style>
-      <p>Hello Bebe <%= @candidate.first_name %></p>
+      <%= cl_image_tag @candidate.map.key, style: 'padding-right: 40px;',
+        width: 825, height: 538 %>
     </div>
 </div>

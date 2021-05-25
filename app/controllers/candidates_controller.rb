@@ -17,4 +17,13 @@ class CandidatesController < ApplicationController
     @reqs = Req.all
     @candidates = Candidate.all
     end
+
+  def tchat
+    @chatroom = Chatroom.last
+
+    @candidate = Candidate.find(params[:id])
+    @reqs = Req.all
+    @candidates = Candidate.all
+  end
+
   end

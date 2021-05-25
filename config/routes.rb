@@ -7,6 +7,9 @@ Rails.application.routes.draw do
     member do
        get 'map', to: "candidates#map"
        get 'profile', to: "candidates#profile"
+       get 'tchat', to: "candidates#tchat" do
+        resources :message, only: :create
+      end
     end
   end
 end

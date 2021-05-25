@@ -1,14 +1,27 @@
-<div class="row">
-    <div class="col-2" style="background-color: #090131">
-      <div>
+<body>
+  <div class="row">
+    <div class="col-2" id="reqs_bar">
+      <div style="head">
+        <%= cl_image_tag("Group_2_vnmtnk",
+        width: 124, height: 45, style: 'margin-top: 26px; margin-left: 20px;') %>
+      </div>
+      <div class="req_header">
+        <button>+ Open new Req</button>
+      </div>
+      <%= cl_image_tag("Group_3_qaughh",
+        width: 200, height: 31, style: 'margin-left: 20px;') %>
+      <div class="list">
         <%= render template: "reqs/home" %>
       </div>
     </div>
     <div class="col-3" style="background-color: #FFFFFF">
-      <%= render template: "candidates/home" %>
+        <%= render template: "candidates/home" %>
     </div>
     <div class="col-7">
       <%= render 'shared/navbar' %>
-
+      <%= cl_image_tag("World_map__blue_dots_1_3_mjhmhz", style: 'padding-right: 40px;',
+        width: 825, height: 538) %>
     </div>
 </div>
+</body>
+

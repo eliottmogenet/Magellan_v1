@@ -1,3 +1,3 @@
 class Country < ApplicationRecord
-  #shas_many :candidates
+  has_many :candidates
 end

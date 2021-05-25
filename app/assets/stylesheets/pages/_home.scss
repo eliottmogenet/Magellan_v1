@@ -1,1 +1,133 @@
 // Specific CSS for your home-page
+
+.row {
+  height: 100vh;
+}
+
+#reqs_bar {
+  height: 100%;
+  background-color: #090131;
+}
+
+.list {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+i {
+  margin-right: 5px;
+}
+
+
+.req_header {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.req_box {
+  margin-left: 20px;
+  background-color: #282341;
+  width: 201px;
+  height: 38px;
+  border-radius: 10px;
+  text-align: left;
+  vertical-align: middle;
+  line-height: 38px;
+
+  p {
+    font-size: 11px;
+    margin-left: 20px;
+  }
+}
+
+button {
+  margin-left: 20px;
+  margin-top: 30px;
+  background-color: #4175FE;
+  width: 201px;
+  height: 50px;
+  border-radius: 10px;
+  color: white;
+  border-width: 0px;
+  font-size: 14px;
+  font-weight: 400;
+
+
+}
+
+.card {
+  width: 228px;
+  height: 90px;
+  border-radius: 5px;
+  background-color: #F0F0F1;
+}
+
+.description {
+  line-height: 3px;
+}
+
+#name {
+ font-weight: 600;
+ font-size: 12px;
+ color: #090131;
+}
+
+#job {
+ font-weight: 400;
+ font-size: 12px;
+ color: #777581;
+}
+
+#location {
+  color: #282341;
+  font-weight: 400;
+  font-size: 12px;
+}
+
+
+.info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  height: 110px;
+}
+
+.info:hover{
+  background-color: #F0F0F1;
+  text-decoration: none;
+}
+
+.photo {
+  margin-right: 20px;
+  padding-bottom: 10px;
+}
+
+.candidate_nav{
+  font-size: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+
+.nav-link {
+  color: #777581;
+}
+
+.nav-link:hover{
+  color: #090131;
+}
+
+.active {
+  color: #090131;
+}
+
+.div-profile {
+  background-color: white;
+  height: 100vh;
+}
+
+
+
