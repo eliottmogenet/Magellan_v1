@@ -1,7 +1,16 @@
 
 <div class="row">
     <div class="col-2" style="background-color: #090131">
-      <div>
+      <div style="head">
+        <%= cl_image_tag("Group_2_vnmtnk",
+        width: 124, height: 45, style: 'margin-top: 26px; margin-left: 20px;') %>
+      </div>
+      <div class="req_header" >
+        <button>+ Open new Req</button>
+      </div>
+      <%= cl_image_tag("Group_3_qaughh",
+        width: 200, height: 31, style: 'margin-left: 20px;') %>
+      <div class="list">
         <%= render template: "reqs/home" %>
       </div>
     </div>
@@ -9,42 +18,14 @@
       <%= render template: "candidates/home" %>
     </div>
     <div class="col-7">
-      <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
-
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <%= link_to "Geography", map_candidate_path(@candidate), class: "nav-link" %>
-      </li>
-      <li class="nav-item">
-        <%= link_to "Profiles", profile_candidate_path(@candidate), class: "nav-link" %>
-      </li>
-      <li class="nav-item">
-        <%= link_to "Conversations",  tchat_candidate_path(@candidate), class: "nav-link" %>
-      </li>
-      <li class="nav-item dropdown">
-        <%= link_to "Edit search", "#", class: "dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
-        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-          <%= link_to "Action", "#", class: "dropdown-item" %>
-          <%= link_to "Another action", "#", class: "dropdown-item" %>
-        </div>
-      </li>
-    </ul>
-  </div>
-</div>
+      <%= render "shared/navbar" %>
 
 <style>
-.navbar-lewagon .navbar-collapse {
-  flex-grow: 0;
-}
 
-.navbar-lewagon {
-  width: 40px;
+.req_header {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
 }
 </style>
       <div class="div-profile">

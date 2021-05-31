@@ -9,6 +9,7 @@ class CandidatesController < ApplicationController
 
     @reqs = Req.all
     @candidates = Candidate.all
+    @chatroom = Chatroom.first
   end
 
   def map
@@ -16,14 +17,16 @@ class CandidatesController < ApplicationController
 
     @reqs = Req.all
     @candidates = Candidate.all
-    end
-
-  def tchat
-    @chatroom = Chatroom.last
-
-    @candidate = Candidate.find(params[:id])
-    @reqs = Req.all
-    @candidates = Candidate.all
+    @chatroom = Chatroom.first
   end
 
+  #def tchat
+    #@chatroom = Chatroom.last
+
+
+    #@candidate = Candidate.find(params[:id])
+    #@reqs = Req.all
+    #@candidates = Candidate.all
+    #@message = Message.new
+  #end
   end

@@ -1,0 +1,69 @@
+
+<div class="row">
+    <div class="col-2" style="background-color: #090131">
+      <div style="head">
+        <%= cl_image_tag("Group_2_vnmtnk",
+        width: 124, height: 45, style: 'margin-top: 26px; margin-left: 20px;') %>
+      </div>
+      <div class="req_header">
+        <button>+ Open new Req</button>
+      </div>
+      <%= cl_image_tag("Group_3_qaughh",
+        width: 200, height: 31, style: 'margin-left: 20px;') %>
+      <div class="list">
+        <%= render template: "reqs/home" %>
+      </div>
+    </div>
+    <div class="col-3" style="background-color: #FFFFFF">
+      <%= render template: "candidates/home" %>
+    </div>
+    <div class="col-7" id="div3">
+       <%= render "shared/navbar" %>
+
+<h1>#<%= @chatroom.name %></h1>
+<div id="messages" data-chatroom-id="<%= @chatroom.id %>">
+  <% @messages.each do |message| %>
+    <div class="message-container" id="message-<%= message.id %>">
+      <i class="author">
+        <small><%= message.created_at.strftime("%a %b %e at %l:%M%p") %></small>
+      </i>
+      <p><%= message.content %></p>
+    </div>
+  <% end %>
+</div>
+  <%= simple_form_for [ @candidate, @chatroom, @message ] do |f| %>
+  <%= f.input :content, label: false, placeholder: "Message ##{@chatroom.name}" %>
+  <%= f.button :submit  %>
+<% end %>
+    </div>
+</div>
+
+<style>
+
+#div3 {
+
+}
+
+.navbar {
+  background-color: #F4F4F4;
+  margin-top: 10px;
+}
+
+.navbar-nav {
+  font-size: 20px;
+}
+
+#messages {
+  color: black;
+}
+
+.nav-link {
+  margin-right: 40px;
+}
+
+#navbarDropdown {
+  margin-left: 100px;
+  margin-right: none;
+}
+
+</style>
