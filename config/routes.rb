@@ -12,5 +12,10 @@ Rails.application.routes.draw do
        get 'profile', to: "candidates#profile"
        get 'tchat', to: "candidates#tchat"
       end
+    member do
+      post 'discover', to: "candidates#discover"
+      post 'select', to: "candidates#select"
     end
   end
+end
+

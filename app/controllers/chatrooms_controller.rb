@@ -1,6 +1,7 @@
 class ChatroomsController < ApplicationController
 
   def show
+    @users = User.all
     @messages = Message.all
     @chatroom = Chatroom.first
 

@@ -86,6 +86,16 @@ button {
   font-size: 12px;
 }
 
+.des {
+    display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.elips img {
+  position: relative;
+  margin-left: -60px;
+}
 
 .info {
   display: flex;
@@ -95,8 +105,13 @@ button {
   height: 110px;
 }
 
-.info:hover{
+.new {
   background-color: #F0F0F1;
+  text-decoration: none;
+}
+
+.info:hover{
+  background-color: #EDEAFA;
   text-decoration: none;
 }
 
@@ -120,13 +135,10 @@ button {
   color: #090131;
 }
 
-.active {
-  color: #090131;
-}
-
 .div-profile {
   background-color: white;
   height: 100vh;
+  border-radius: 10px;
 }
 
 .head-candidates {
@@ -141,5 +153,12 @@ button {
     }
 }
 
+.actived {
+  background-color: #EDEAFA;
+}
 
+.tab-pane {
+  height: 600px;
+  overflow-y: scroll;
+}
 

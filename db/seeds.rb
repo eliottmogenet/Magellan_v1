@@ -5,6 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+User.destroy_all
 Req.destroy_all
 Candidate.destroy_all
 TechHub.destroy_all
@@ -14,8 +15,10 @@ Stack.destroy_all
 
 p "creating users"
 user1 = User.new(first_name: "Sebastien", email: "seb@lewagon.org", password: "seb@lewagon.org")
+user1.photo.attach(io: File.open(File.join(Rails.root,'app/assets/images/candidate1.jpg')), filename: 'candidate1.jpg')
 user1.save!
 user2 = User.new(first_name: "John", email: "John@lewagon.org", password: "John@lewagon.org")
+user2.photo.attach(io: File.open(File.join(Rails.root,'app/assets/images/candidate1.jpg')), filename: 'candidate1.jpg')
 user2.save!
 
 p "creating chatroom"
@@ -43,12 +46,22 @@ france.save!
 
 p "creating candidates"
 
-candidate1 = france.candidates.create(first_name: "Nicolas", last_name: "Dupont", location: "Atlanta(🇺🇸)", job: "Ruby engineer", timezone: "GMT-4", job_status: "Active", status: "New", next_steps: "I want to become an astronaut", expected_wage: 85, softskills: "Driving a car", industry: "Saas", languages: ["Ruby", "Javascript"])
+candidate1 = france.candidates.create(first_name: "Nicolas", last_name: "Dupont", location: "Atlanta(🇺🇸)", job: "Ruby engineer", timezone: "GMT-4", job_status: "Active", status: "New", next_steps: "I want to become an astronaut", expected_wage: 85, softskills: "Driving a car", industry: "Saas", languages: ["Ruby", "Javascript"], selected: false)
 candidate1.photo.attach(io: File.open(File.join(Rails.root,'app/assets/images/candidate1.jpg')), filename: 'candidate1.jpg')
 candidate1.map.attach(io: File.open(File.join(Rails.root,'app/assets/images/map_candidate1.png')), filename: 'map_candidate1.jpg')
 candidate1.save!
-#candidate2 = france.candidates.create(first_name: "Mat", last_name: "Baker", location: "Rio de Janeiro(🇧🇷)", job: "Software architect", timezone: "GMT-3", job_status: "Passive", status: "New", next_steps: "I want to become an astronaut", expected_wage: 85, softskills: "Driving a car", industry: "Saas", languages: ["Ruby", "Javascript"])
-#candidate2.save!
+candidate2 = france.candidates.create(first_name: "Mat", last_name: "Baker", location: "Rio de Janeiro(🇧🇷)", job: "Software architect", timezone: "GMT-3", job_status: "Passive", status: "autre2", next_steps: "I want to become an astronaut", expected_wage: 85, softskills: "Driving a car", industry: "Saas", languages: ["Ruby", "Javascript"], selected: false)
+candidate2.photo.attach(io: File.open(File.join(Rails.root,'app/assets/images/candidate1.jpg')), filename: 'candidate1.jpg')
+candidate2.map.attach(io: File.open(File.join(Rails.root,'app/assets/images/map_candidate1.png')), filename: 'map_candidate1.jpg')
+candidate2.save!
+candidate3 = france.candidates.create(first_name: "Nail", last_name: "Huntin", location: "Mexico(🇲🇽)", job: "Software architect", timezone: "GMT-3", job_status: "Passive", status: "autre3", next_steps: "I want to become an astronaut", expected_wage: 85, softskills: "Driving a car", industry: "Saas", languages: ["Ruby", "Javascript"], selected: false)
+candidate3.photo.attach(io: File.open(File.join(Rails.root,'app/assets/images/candidate1.jpg')), filename: 'candidate1.jpg')
+candidate3.map.attach(io: File.open(File.join(Rails.root,'app/assets/images/map_candidate1.png')), filename: 'map_candidate1.jpg')
+candidate3.save!
+candidate4 = france.candidates.create(first_name: "Nail", last_name: "Huntin", location: "Mexico(🇲🇽)", job: "Software architect", timezone: "GMT-3", job_status: "Passive", status: "autre4", next_steps: "I want to become an astronaut", expected_wage: 85, softskills: "Driving a car", industry: "Saas", languages: ["Ruby", "Javascript"], selected: false)
+candidate4.photo.attach(io: File.open(File.join(Rails.root,'app/assets/images/candidate1.jpg')), filename: 'candidate1.jpg')
+candidate4.map.attach(io: File.open(File.join(Rails.root,'app/assets/images/map_candidate1.png')), filename: 'map_candidate1.jpg')
+candidate4.save!
 
 
 p "creating challenges"

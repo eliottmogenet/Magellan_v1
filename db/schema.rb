@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_25_172504) do
+ActiveRecord::Schema.define(version: 2021_06_02_145052) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -64,6 +64,7 @@ ActiveRecord::Schema.define(version: 2021_05_25_172504) do
     t.string "job_status"
     t.bigint "country_id"
     t.string "languages", default: [], array: true
+    t.boolean "selected", default: false
     t.index ["country_id"], name: "index_candidates_on_country_id"
     t.index ["tech_hub_id"], name: "index_candidates_on_tech_hub_id"
   end

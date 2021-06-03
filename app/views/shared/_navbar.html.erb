@@ -1,14 +1,15 @@
+
       <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-              <%= link_to "Geography", map_candidate_path(@candidate), class: "nav-link" %>
+              <%= link_to "Geography", map_candidate_path(@candidate), class: "nav-link", id: "mapy" %>
             </li>
             <li class="nav-item">
-              <%= link_to "Profiles", profile_candidate_path(@candidate), class: "nav-link" %>
+              <%= link_to "Profile", profile_candidate_path(@candidate), class: "nav-link", id: "profy" %>
             </li>
             <li class="nav-item">
-              <%= link_to "Conversations",  candidate_chatroom_path(@candidate, @chatroom), class: "nav-link" %>
+              <%= link_to "Conversation",  candidate_chatroom_path(@candidate, @chatroom), class: "nav-link", id: "convy" %>
             </li>
             <li class="nav-item dropdown">
               <%= link_to "Edit search", "#", class: "nav-link", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
@@ -47,4 +48,9 @@
   margin-right: none;
 }
 
+.active {
+  color: black;
+}
+
 </style>
+

@@ -27,14 +27,44 @@
   justify-content: center;
   margin-bottom: 30px;
 }
+  #profy {
+    color: black;
+  }
 </style>
+
       <div class="div-profile">
         <div class="head-profile">
-          <div class="id-info"></div>
-          <p><%= @candidate.first_name + "" + @candidate.last_name %></p>
-        <p><%= @candidate.job %></p>
-        <p><%= @candidate.location %></p>
-          <div class="stacks-info"></div>
+          <div class="id-info">
+            <div class="profile-info">
+              <div>
+                <%= cl_image_tag("ben-parker-OhKElOkQ3RE-unsplash_2_guntwj", width: 80, height: 80) %>
+              </div>
+              <div class="info-pro">
+                <h4><%= @candidate.first_name + " " + @candidate.last_name %></h4>
+                <p><%= @candidate.job %></p>
+                <p><%= @candidate.location + " " %><i class="fab fa-github"></i><%= + " " %><i class="fab fa-linkedin-in"></i></p>
+              </div>
+            </div>
+            <div class="actions">
+              <button id="msg">Start conversation <i class="fas fa-paper-plane" style="color: white"></i></button>
+              <div class="secondary-actions">
+                <i class="fas fa-share-square"></i>
+                <i class="far fa-star"></i>
+                <i class="fas fa-archive"></i>
+              </div>
+            </div>
+
+          </div>
+          <div class="stacks-info">
+            <div>
+              <p id="title-stack">Main stacks</p>
+              <% @candidate.languages.each do |language | %>
+                <div class="stack">
+                  <p><%= language %></p>
+                </div>
+              <% end  %>
+              </div>
+          </div>
         </div>
         <div class="bio-challenges">
           <div class="candidate_nav">

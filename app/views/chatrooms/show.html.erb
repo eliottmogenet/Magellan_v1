@@ -20,29 +20,119 @@
     <div class="col-7" id="div3">
        <%= render "shared/navbar" %>
 
-<h1>#<%= @chatroom.name %></h1>
+  <div class="head-msg">
+    <div style="margin-left: 30px; margin-top: 5px">
+        <%= cl_image_tag @users.first.photo.key, height: 35, width: 35 %>
+      <% @users.each do |user| %>
+        <%= cl_image_tag user.photo.key, height: 35, width: 35, :class => "img_preview"%>
+      <% end %>
+    </div>
+    <div>
+      <p style="color: #777581; font-size: 10px; margin-left: 10px ; vertical-align: middle; line-height: 40px"> + Add team members </p>
+    </div>
+  </div>
+<hr>
+
+
 <div id="messages" data-chatroom-id="<%= @chatroom.id %>">
   <% @messages.each do |message| %>
     <div class="message-container" id="message-<%= message.id %>">
       <i class="author">
-        <small><%= message.created_at.strftime("%a %b %e at %l:%M%p") %></small>
+        <small><%= @users.first.first_name %></small>
       </i>
-      <p><%= message.content %></p>
+      <div class="msg-div">
+      <%= cl_image_tag @users.first.photo.key, height: 35, width: 35 %>
+      <p id="msg-content"><%= message.content + " " %></p>
+      </div>
     </div>
   <% end %>
 </div>
-  <%= simple_form_for [ @candidate, @chatroom, @message ] do |f| %>
-  <%= f.input :content, label: false, placeholder: "Message ##{@chatroom.name}" %>
-  <%= f.button :submit  %>
-<% end %>
+<div class="enter-msg">
+  <div class="photo-msg">
+      <%= cl_image_tag @users.first.photo.key, height: 35, width: 35 %>
+  </div>
+  <div class="formulaire">
+    <%= simple_form_for [ @candidate, @chatroom, @message ] do |f| %>
+    <%= f.input :content, label: false, placeholder: "Type your comment..." %>
+  </div>
+  <button id="send"><%= f.button :submit, 'Send' %><i class="fas fa-paper-plane" style="color: white"></i></button>
+  <% end %>
+</div>
+<p id="pose"><i class="fas fa-toggle-on" style="color: black"></i> Internal </p>
     </div>
 </div>
 
 <style>
 
-#div3 {
+.head-msg {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.img_preview {
+  margin-left: -10px;
+}
+
+#pose {
+  position: relative;
+  color: black;
+  margin-left: 30px;
 
 }
+
+.photo-msg {
+    margin-top: 5px;
+}
+
+.form-control {
+  height: 40px;
+  margin-left: 15px;
+  border-radius: 10px;
+  margin-top: 5px;
+  border-width: 0px;
+}
+
+textarea.form-control {
+  height: 40px;
+  outline: none;
+}
+
+small {
+  margin-left: 50px;
+}
+
+#send {
+  width: 150px;
+  margin-top: 5px;
+  color: white;
+  height: 40px;
+}
+
+.photo-msg {
+  width: fit-content;
+}
+
+.formulaire {
+  width: 580px;
+
+}
+
+.enter-msg {
+  display: flex;
+  justify-content: flex-start;
+  margin-left: 30px;
+}
+
+.msg-div {
+  display: flex;
+  justify-content: flex-start;
+
+}
+
+#convy {
+  color: black;
+}
+
 
 .navbar {
   background-color: #F4F4F4;
@@ -65,5 +155,26 @@
   margin-left: 100px;
   margin-right: none;
 }
+
+#messages {
+  height: 540px;
+  margin-left: 30px;
+  overflow-y: scroll;
+}
+
+#msg-content {
+  margin-left: 15px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  width: fit-content;
+  height: 40px;
+  background-color: #E5E5E5;
+  color: #777581;
+  font-size: 12px;
+  border-radius: 10px;
+}
+
 
 </style>

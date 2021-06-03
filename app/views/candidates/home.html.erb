@@ -8,7 +8,7 @@
 <div class="candidate_nav">
   <ul class="nav">
   <li class="nav-item">
-    <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">New(<%= @candidates.count %>)</a>
+    <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">New(<%= @candidates.where(status: "New").count %>)</a>
   </li>
   <li class="nav-item">
     <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Current</a>
@@ -22,24 +22,165 @@
 <div class="tab-content" id="pills-tabContent">
   <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
 
-      <% @candidates.each do |candidate| %>
-    <%= link_to map_candidate_path(candidate) do %>
-      <div class="info">
-        <div class="photo">
-          <%= cl_image_tag("ben-parker-OhKElOkQ3RE-unsplash_2_guntwj",
-        width: 55, height: 55) %>
-        </div>
-        <div class="description">
-        <p id="name"><%= candidate.first_name + " " + candidate.last_name %><p>
-        <p id= "job"><%= candidate.job %></p>
-        <p id="location"><%= candidate.location %></p>
-        </div>
-      </div>
-      <%= cl_image_tag("Line_6_u4e9nl", width: 320) %>
-  <% end %>
- <% end %>
+                     <% @candidates.where(status: "New").each do |candidate| %>
+                  <%= link_to discover_candidate_path(candidate), method: :post do %>
+                    <div class="info new">
+                      <div class="box">
+                        <div class="elips">
+                          <%= cl_image_tag("Ellipse_9_mwigcd", width: 5, height: 5) %>
+                        </div>
+                        <div class="des">
+                          <div class="photo">
+                            <%= cl_image_tag("ben-parker-OhKElOkQ3RE-unsplash_2_guntwj",
+                          width: 55, height: 55) %>
+                          </div>
+                          <div class="description">
+                          <p id="name"><%= candidate.first_name + " " + candidate.last_name %><p>
+                          <p id= "job"><%= candidate.job %></p>
+                          <p id="location"><%= candidate.location %></p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <%= cl_image_tag("Line_6_u4e9nl", width: 320) %>
+               <% end %>
+              <% end  %>
 
-  </div>
+              <% @candidates.where(status: "autre").each do |candidate| %>
+              <%= link_to map_candidate_path(candidate) do %>
+                <%= link_to select_candidate_path(candidate), method: :post do %>
+                <% if candidate.selected == true %>
+                  <div class="info actived">
+                  <div class="photo">
+                    <%= cl_image_tag("ben-parker-OhKElOkQ3RE-unsplash_2_guntwj",
+                  width: 55, height: 55) %>
+                  </div>
+                  <div class="description">
+                  <p id="name"><%= candidate.first_name + " " + candidate.last_name %><p>
+                  <p id= "job"><%= candidate.job %></p>
+                  <p id="location"><%= candidate.location %></p>
+                  </div>
+                </div>
+                <% elsif candidate.selected == false %>
+                  <div class="info">
+                  <div class="photo">
+                    <%= cl_image_tag("ben-parker-OhKElOkQ3RE-unsplash_2_guntwj",
+                  width: 55, height: 55) %>
+                  </div>
+                  <div class="description">
+                  <p id="name"><%= candidate.first_name + " " + candidate.last_name %><p>
+                  <p id= "job"><%= candidate.job %></p>
+                  <p id="location"><%= candidate.location %></p>
+                  </div>
+                </div>
+                <% end %>
+                <%= cl_image_tag("Line_6_u4e9nl", width: 320) %>
+            <% end %>
+           <% end %>
+          <% end %>
+
+
+            <% @candidates.where(status: "autre2").each do |candidate| %>
+              <%= link_to map_candidate_path(candidate) do %>
+                <%= link_to select_candidate_path(candidate), method: :post do %>
+                <% if candidate.selected == true %>
+                  <div class="info actived">
+                  <div class="photo">
+                    <%= cl_image_tag("ben-parker-OhKElOkQ3RE-unsplash_2_guntwj",
+                  width: 55, height: 55) %>
+                  </div>
+                  <div class="description">
+                  <p id="name"><%= candidate.first_name + " " + candidate.last_name %><p>
+                  <p id= "job"><%= candidate.job %></p>
+                  <p id="location"><%= candidate.location %></p>
+                  </div>
+                </div>
+                <% elsif candidate.selected == false %>
+                  <div class="info">
+                  <div class="photo">
+                    <%= cl_image_tag("ben-parker-OhKElOkQ3RE-unsplash_2_guntwj",
+                  width: 55, height: 55) %>
+                  </div>
+                  <div class="description">
+                  <p id="name"><%= candidate.first_name + " " + candidate.last_name %><p>
+                  <p id= "job"><%= candidate.job %></p>
+                  <p id="location"><%= candidate.location %></p>
+                  </div>
+                </div>
+                <% end %>
+                <%= cl_image_tag("Line_6_u4e9nl", width: 320) %>
+            <% end %>
+           <% end %>
+          <% end %>
+
+
+
+            <% @candidates.where(status: "autre3").each do |candidate| %>
+              <%= link_to map_candidate_path(candidate) do %>
+                <%= link_to select_candidate_path(candidate), method: :post do %>
+                <% if candidate.selected == true %>
+                  <div class="info actived">
+                  <div class="photo">
+                    <%= cl_image_tag("ben-parker-OhKElOkQ3RE-unsplash_2_guntwj",
+                  width: 55, height: 55) %>
+                  </div>
+                  <div class="description">
+                  <p id="name"><%= candidate.first_name + " " + candidate.last_name %><p>
+                  <p id= "job"><%= candidate.job %></p>
+                  <p id="location"><%= candidate.location %></p>
+                  </div>
+                </div>
+                <% elsif candidate.selected == false %>
+                  <div class="info">
+                  <div class="photo">
+                    <%= cl_image_tag("ben-parker-OhKElOkQ3RE-unsplash_2_guntwj",
+                  width: 55, height: 55) %>
+                  </div>
+                  <div class="description">
+                  <p id="name"><%= candidate.first_name + " " + candidate.last_name %><p>
+                  <p id= "job"><%= candidate.job %></p>
+                  <p id="location"><%= candidate.location %></p>
+                  </div>
+                </div>
+                <% end %>
+                <%= cl_image_tag("Line_6_u4e9nl", width: 320) %>
+            <% end %>
+           <% end %>
+          <% end %>
+
+            <% @candidates.where(status: "autre4").each do |candidate| %>
+              <%= link_to map_candidate_path(candidate) do %>
+                <%= link_to select_candidate_path(candidate), method: :post do %>
+                <% if candidate.selected == true %>
+                  <div class="info actived">
+                  <div class="photo">
+                    <%= cl_image_tag("ben-parker-OhKElOkQ3RE-unsplash_2_guntwj",
+                  width: 55, height: 55) %>
+                  </div>
+                  <div class="description">
+                  <p id="name"><%= candidate.first_name + " " + candidate.last_name %><p>
+                  <p id= "job"><%= candidate.job %></p>
+                  <p id="location"><%= candidate.location %></p>
+                  </div>
+                </div>
+                <% elsif candidate.selected == false %>
+                  <div class="info">
+                  <div class="photo">
+                    <%= cl_image_tag("ben-parker-OhKElOkQ3RE-unsplash_2_guntwj",
+                  width: 55, height: 55) %>
+                  </div>
+                  <div class="description">
+                  <p id="name"><%= candidate.first_name + " " + candidate.last_name %><p>
+                  <p id= "job"><%= candidate.job %></p>
+                  <p id="location"><%= candidate.location %></p>
+                  </div>
+                </div>
+                <% end %>
+                <%= cl_image_tag("Line_6_u4e9nl", width: 320) %>
+            <% end %>
+           <% end %>
+          <% end %>
+</div>
   <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">...</div>
   <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">...</div>
 </div>
