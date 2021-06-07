@@ -43,6 +43,12 @@ class CandidatesController < ApplicationController
     redirect_to map_candidate_path(@candidate)
   end
 
+  def new
+    @tech_hubs = TechHub.all
+    @req = Req.new
+
+  end
+
 
 
   #def tchat

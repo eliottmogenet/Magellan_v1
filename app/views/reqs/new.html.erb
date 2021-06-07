@@ -1,0 +1,834 @@
+
+
+<head>
+  <link href="bootstrap.min.css" rel="stylesheet">
+  <link href="custom.css" rel="stylesheet">
+</head>
+
+<body>
+  <div class="row">
+    <div class="col-2" style="background-color: #090131">
+      <div style="head">
+        <%= cl_image_tag("Group_2_vnmtnk",
+        width: 124, height: 45, style: 'margin-top: 26px; margin-left: 20px;') %>
+      </div>
+      <div>
+        <div id="list-example" class="nav nav-pills flex-column">
+          <a class="nav-link" href="#list-item-1">Tech Hubs</a>
+          <a class="nav-link" href="#list-item-2">Team</a>
+          <a class="nav-link" href="#list-item-3">Job</a>
+          <a class="nav-link" href="#list-item-4">Launch</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-10">
+      <div id="all" data-spy="scroll" data-target="#list-example" data-offset="0" class="scrollspy-example" style="color: black">
+          <div class="blanc" id="list-item-1">
+              <h4>Start your sourcing journey</h4>
+                <p style="font-size: 14px; font-weight: 550;">Choose the tech hubs you want to start with</p>
+              <div class="checks">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" href="#list-item-2" id="defaultCheck1">
+                  <label class="form-check-label" for="defaultCheck1">
+                    See timezones
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
+                  <label class="form-check-label" for="defaultCheck1">
+                    See HQ
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="defaultCheck3">
+                  <label class="form-check-label" for="defaultCheck1">
+                    See team members
+                  </label>
+                </div>
+              </div>
+              <%= cl_image_tag("World_map__blue_dots_2_1_b7lldt", width: 970, height: 632) %>
+              <%= cl_image_tag("Group_6_7_sxnqpl", width: 970, height: 632, class: "imag") %>
+              <%= cl_image_tag("Group_7_wlr913", width: 970, height: 632, class: "timezon") %>
+              <%= cl_image_tag("Group_8_j8irs6", width: 970, height: 632, class: "latam") %>
+              <div class="hubss">
+                <% @tech_hubs.each do | hub |%>
+                  <div class="carrd">
+                    <b><%= hub.name %></b>
+                      <p>Countries | Timezones </p>
+                      <p></p>
+                  </div>
+                <% end  %>
+                <button id="next">Next ></button>
+              </div>
+          </div>
+          <div class="blanc" id="list-item-2">
+            <h4>Inside <%= @companies.first.name %> </h4>
+              <p style="font-size: 14px; font-weight: 550;">Build the employer branding candidates need </p>
+              <div class="first-block">
+                <div class="col-8 company"><p class="titre">Your company in short </p>
+                  <div class="kard" id="kard1">
+                    <div class="logo">
+                      <div class="log-desc">
+                        <div>
+                         <%= cl_image_tag @companies.first.photo.key, height: 50, width: 50 %>
+                        </div>
+                        <div class="desc-info">
+                          <p style="font-size: 15px"><b>About  <%= @companies.first.name %></b></p>
+                          <p style="margin-top: -12px"><%= @companies.first.industry %></p>
+                        </div>
+                      </div>
+                       <textarea id="description" placeholder="<%= @companies.first.description %>"></textarea>
+                    </div>
+                  <div class="video">
+                    <iframe width="193" height="135" src="<%= @companies.first.website %>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                  </div>
+                </div>
+              </div>
+                <div class="col-3 number"><p class="titre">Few numbers</p><div class="kard">
+                  <div class="numb">
+                    <div class="num">
+                      <h5>2015</h5>
+                      <p>founding year</p>
+                    </div>
+                    <div class="num">
+                      <h5>512</h5>
+                      <p>people </p>
+                    </div>
+                  </div>
+                  <div class="numb">
+                    <div class="num">
+                      <h5>$ 240M</h5>
+                      <p>raised</p>
+                    </div>
+                    <div class="num">
+                      <h5>60%</h5>
+                      <p>full-remote</p>
+                    </div>
+                  </div>
+                  <div class="num" style="text-align: center">
+                    <h6>3 countries</h6>
+                    <p>USA 🇺🇸 - France 🇫🇷 - UK 🇬🇧</p>
+                  </div>
+                </div>
+              </div>
+              </div>
+              <div class="second-block ">
+                <div class="col-3 team"><p class="titre">The future candidate teamates</p>
+                  <div class="tm">
+                    <textarea class="team-title" type="text" style="font-size: 15px; width: 200px" placeholder="The Revenue Data Engineering Team"></textarea>
+                    <p><i class="fas fa-user" style="width: 10px;"></i> <input class="sizeteam" type="text" placeholder="15"></input> people (+ <input class="sizeteam" type="text" placeholder="10"></input> in 2021) </p>
+                    <p><i class="fas fa-globe-americas"></i><input class="sizeteam" type="text" placeholder="12"></input> full-remote </p>
+                    <hr>
+                    <h6>Team members </h6>
+                    <p>+ Add members of the team </p>
+                    <div>
+                      <% @users.each do | user | %>
+                      <div class="user-select">
+                        <div class="user-select-photo">
+                      <%= cl_image_tag user.photo.key, height: 35, width: 35 %>
+                        </div>
+                        <div>
+                         <p><%= user.first_name %><%= user.last_name %> </p>
+                         <p style="margin-top: -15px">VP Engineering </p>
+                        </div>
+                      </div>
+                  <% end  %>
+                    </div>
+                </div>
+              </div>
+                <div class="col-8 comp-info">
+                  <div class="roadmap"><p class="titre">The technical roadmap of the team in the upcoming months </p><div class="road">
+                    <textarea id="team-description" placeholder="<%= @companies.first.team %>"></textarea>
+                    <%= cl_image_tag("Group_9_2_jrjtom", width: 402, height: 30, style: "margin-left: 150px") %>
+                    <div class="goals">
+                      <textarea class="goal" type="text" placeholder="Describe the team's goal"></textarea>
+                      <textarea class="goal" type="text" placeholder="Describe the team's goal"></textarea>
+                      <textarea class="goal" type="text" placeholder="Describe the team's goal"></textarea>
+                    </div>
+                    <div class="staks">
+                      <% @companies.first.languages.each do |language | %>
+                      <div class="stack">
+                      <p><%= language %></p>
+                    </div>
+                  <% end  %>
+                  <div>
+                    <p><textarea class="step-bis" placeholder="The team works in 2 weeks sprint with scrum methods"></textarea></p>
+                  </div>
+              </div>
+                  </div>
+                </div>
+                  <div class="articles"><p class="titre">Articles and ressources published by the team </p><div class="art"></div></div>
+                </div>
+            </div>
+          </div>
+
+         <div class="blanc" id="list-item-3">
+            <h4>The job in details </h4>
+            <p style="font-size: 14px; font-weight: 550;">Make the candidate feel how unique is the job </p>
+              <div class="first-block">
+                <div class="col-8 company"><p class="titre">Short description of the job </p><div class="kard">
+                  <div class="log-desc">
+                    <div>
+                      <%= cl_image_tag @companies.first.photo.key, height: 50, width: 50 %>
+                      </div>
+                      <div class="desc-info">
+                        <b><input class="ttile" type="text" style="font-size: 15px" placeholder="Job title"></b>
+                      </div>
+                      </div>
+                  <textarea id="description" style="margin-top: 15px" placeholder="As a Data Engineer within the Revenue & Growth group, you will work with Spark and big data tooling to build highly reliable, verifiably-accurate data processing pipelines for a large scale mission-critical process. This team ingests the full firehose of data we receive each day - literally trillions of data points and petabytes of data."></textarea>
+                </div>
+              </div>
+                <div class="col-3 number"><p class="titre">Main technical requirements</p><div class="kard">
+                    <p style="font-size: 10px;">Main stacks:</p>
+                    <div class="staks">
+                      <% @reqs.first.languages.each do |language | %>
+                      <div class="stack">
+                      <p><%= language %></p>
+                    </div>
+                  <% end  %>
+              </div>
+                <hr>
+              <div>
+
+              </div>
+                </div>
+              </div>
+              </div>
+              <div class="second-block ">
+                <div class="col-8 comp-info">
+                  <div class="roadmap"><p class="titre">The 5 main technical challenges of the candidate mission </p><div class="road">
+                    <p class="chal"> 1) <textarea class="task" placeholder="Describe the task..."></textarea>
+                      using <input class="language_select" list="europe-countries" placeholder="Type a language" id="fist_one">
+                          <datalist id="europe-countries">
+                            <option>Python</option>
+                            <option>Scala</option>
+                            <option>Ruby</option>
+                          </datalist>
+                      and <input class="language_select" list="tools" placeholder="Type a tool">
+                          <datalist id="tools">
+                            <option>Npm</option>
+                            <option>Redis</option>
+                            <option>Other</option>
+                          </datalist>
+                      collaborating with <input class="language_select" list="team" placeholder="Team">
+                          <datalist id="team">
+                            <option>Designers</option>
+                            <option>Sales</option>
+                            <option>Other</option>
+                          </datalist>
+                    </p>
+                    <p class="chal"> 2) <textarea class="task" placeholder="Describe the task..."></textarea>
+                      using <input class="language_select" list="europe-countries" placeholder="Type a language" id="fist_one">
+                      and <input class="language_select" list="tools" placeholder="Type a tool">
+                      collaborating with <input class="language_select" list="team" placeholder="Team">
+                    </p>
+                     <p class="chal"> 3) <textarea class="task" placeholder="Describe the task..."></textarea>
+                      using <input class="language_select" list="europe-countries" placeholder="Type a language" id="fist_one">
+                      and <input class="language_select" list="tools" placeholder="Type a tool">
+                      collaborating with <input class="language_select" list="team" placeholder="Team">
+                    </p>
+                     <p class="chal"> 4) <textarea class="task" placeholder="Describe the task..."></textarea>
+                      using <input class="language_select" list="europe-countries" placeholder="Type a language" id="fist_one">
+                      and <input class="language_select" list="tools" placeholder="Type a tool">
+                      collaborating with <input class="language_select" list="team" placeholder="Team">
+                    </p>
+                     <p class="chal"> 5) <textarea class="task" placeholder="Describe the task..."></textarea>
+                      using <input class="language_select" list="europe-countries" placeholder="Type a language" id="fist_one">
+                      and <input class="language_select" list="tools" placeholder="Type a tool">
+                      collaborating with <input class="language_select" list="team" placeholder="Team">
+                    </p>
+                  </div>
+                </div>
+                  <div class="articles"><p class="titre">The career evolution possibilities  </p>
+                    <div class="art">
+                     <p><i class="fas fa-user" style="width: 10px;"></i><textarea class="job" placeholder="Job title and missions "></textarea></p>
+                     <p><i class="fas fa-user" style="width: 10px;"></i><textarea class="job" placeholder="Job title and missions "></textarea></p>
+                  </div>
+                </div>
+                </div>
+                <div class="col-3 team"><p class="titre">The entire interview process  </p>
+                  <div class="tm">
+                     <div class="numbers">
+                       <p style="margin-right: 10px;"><b><select id="number_select">
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                          <option value="4">4</option>
+                          <option value="5">5</option>
+                          <option value="6">6</option>
+                          <option value="7">7</option>
+                          <option value="8">8</option>
+                          <option value="9">9</option>
+                          <option value="10">10</option>
+                      </select> steps </b></p>
+                      <p><b><select id="number_select">
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                          <option value="4">4</option>
+                          <option value="5">5</option>
+                          <option value="6">6</option>
+                          <option value="7">7</option>
+                          <option value="8">8</option>
+                          <option value="9">9</option>
+                          <option value="10">10</option>
+                      </select> weeks in average </b></p>
+                    </div>
+                      <div>
+                        <textarea class="step" type="text" placeholder="Describe the steps and who is involved"></textarea>
+                        <textarea class="step" type="text" placeholder="Describe the steps and who is involved"></textarea>
+                        <textarea class="step" type="text" placeholder="Describe the steps and who is involved"></textarea>
+                        <textarea class="step" type="text" placeholder="Describe the steps and who is involved"></textarea>
+                        <textarea class="step" type="text" placeholder="Describe the steps and who is involved"></textarea>
+                        <textarea class="step" type="text" placeholder="Describe the steps and who is involved"></textarea>-
+                      </div>
+                    </div>
+                  </div>
+              </div>
+
+         <div class="blanc" id="list-item-4">
+          <h4>Launch a search </h4>
+          <p style="font-size: 14px; font-weight: 550;">Add your criteria but be carefull of the “unicorn candidate”</p>
+              <div class="second-block ">
+                <div class="col-3 team"><p class="titre"> Work experience </p><div class="tm-bis">
+                  <div class="requirly ">
+                    <p>Our ideal candidate has <br><br>
+                      <select id="number_select">
+                          <option value="1"> Select a number of years </option>
+                          <option value="1"> 0-2 year </option>
+                          <option value="2"> +2 years </option>
+                          <option value="3"> +3 years </option>
+                          <option value="3"> +4 years </option>
+                          <option value="3"> +5 years </option>
+                          <option value="3"> +6 years </option>
+                          <option value="3"> More than 7 years </option>
+                        </select> <br><br> minimum work experience</p>
+
+                      <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" href="#list-item-2" id="defaultCheck1">
+                    <label class="form-check-label" for="defaultCheck1">
+                      Operating role
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
+                    <label class="form-check-label" for="defaultCheck1">
+                      Managing role
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck3">
+                    <label class="form-check-label" for="defaultCheck1">
+                      VP role
+                    </label>
+                  </div>
+                </div>
+
+
+                </div>
+              </div>
+                <div class="col-6 team"><p class="titre">Choose 3 main stacks to start with </p><div class="tm-bis">
+                  <div class="requirly">
+                   <p class="chal"> We are looking for candidates with <select id="number_select">
+                          <option value="1"> junior </option>
+                          <option value="2"> intermediate </option>
+                          <option value="3"> advanced </option>
+                          <option value="3"> expert </option></select> level in
+                      <input class="language_select" list="europe-countries" placeholder="Type a language" id="fist_one"><br><br>
+                      AND / OR  <select id="number_select">
+                          <option value="1"> a junior </option>
+                          <option value="2"> an intermediate </option>
+                          <option value="3"> an advanced </option>
+                          <option value="3"> an expert </option></select> in <input class="language_select" list="europe-countries" placeholder="Type a language" id="fist_one"><br><br>
+                      or <select id="number_select">
+                          <option value="1"> junior </option>
+                          <option value="2"> intermediate </option>
+                          <option value="3"> advanced </option>
+                          <option value="3"> expert </option> </select> level in <input class="language_select" list="europe-countries" placeholder="Type a language" id="fist_one">. </p>
+                </div>
+                </div>
+              </div>
+                <div class="col-2 team"><p class="titre">Industry </p><div class="tm-bis">
+                  <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" href="#list-item-2" id="defaultCheck1">
+                  <label class="form-check-label" for="defaultCheck1">
+                    B2B Saas
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
+                  <label class="form-check-label" for="defaultCheck1">
+                    Fintech
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="defaultCheck3">
+                  <label class="form-check-label" for="defaultCheck1">
+                    Security
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="defaultCheck3">
+                  <label class="form-check-label" for="defaultCheck1">
+                    Foodtech
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="defaultCheck3">
+                  <label class="form-check-label" for="defaultCheck1">
+                    Mobility/logistics
+                  </label>
+                </div>
+                 <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="defaultCheck3">
+                  <label class="form-check-label" for="defaultCheck1">
+                    E-commerce
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="defaultCheck3">
+                  <label class="form-check-label" for="defaultCheck1">
+                    Blockchain
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="defaultCheck3">
+                  <label class="form-check-label" for="defaultCheck1">
+                    Deeptech
+                  </label>
+                </div>
+                </div>
+              </div>
+              </div>
+              <div class="company" id="last"><p class="titre">Who will be part of the sourcing ?</p><div class="kard"></div>
+            </div>
+         </div>
+      </div>
+    </div>
+
+
+</body>
+
+<style>
+
+.requirly {
+  padding-top: 30px;
+  padding-left: 20px;
+}
+
+.requirly p {
+  font-size: 10px;
+}
+
+.language_select {
+    text-decoration: underline;
+}
+
+select {
+  text-decoration: underline;
+}
+
+.form-check {
+  margin-bottom: 12px;
+}
+
+#list-item-4 {
+  padding-left: 0px;
+}
+
+.step-bis {
+  border: none;
+  outline: none;
+  width: 450px;
+  font-size: 10px;
+  height: 15px;
+  margin-left: 30px;
+}
+
+.user-select {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.user-select-photo {
+  margin-right: 10px;
+}
+
+.sizeteam {
+  border: none;
+  outline: none;
+  width: 20px;
+  height: 12px;
+}
+
+.tm p {
+ font-size: 10px;
+}
+
+.team-title {
+  width: 350px
+  height: 200px;
+  border: none;
+  outline: none;
+}
+
+.ttile {
+  border: none;
+  outline: none;
+  width: 300px;
+}
+
+.language_select {
+  border: none;
+  outline: none;
+  width: 80px;
+}
+
+#fist_one {
+  width: 110px;
+}
+
+.chal {
+  font-size: 10px;
+  padding: 0px;
+}
+
+.task {
+  resize: both;
+  width: 250px;
+  border: none;
+  outline: none;
+  font-size: 10px;
+  height: 15px;
+}
+
+.staks {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.stack {
+  margin-left: 4px;
+}
+
+.num p {
+  text-align: center;
+  font-size: 10px;
+}
+
+
+.numb {
+  display: flex;
+  justify-content: space-around;
+}
+
+.job {
+  font-size: 10px;
+  width: 650px;
+  height: 15px;
+  border: none;
+  outline: none;
+}
+
+.steps {
+  display: flex;
+  justify-content: flex-start;
+  margin-left: 5px;
+}
+
+.step {
+  margin-bottom: 10px;
+  width: 200px;
+  border: none;
+  outline: none;
+  font-size: 10px;
+  height: 20px;
+}
+
+.numbers {
+  font-size: 10px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+#number_select {
+  border: none;
+  outline: none;
+}
+
+#list-item-1 {
+  padding-top: 40px;
+}
+
+.goals {
+  margin-left: 100px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.goal {
+  margin-top: 5px;
+  width: 180px;
+  border: none;
+  outline: none;
+  font-size: 10px;
+  height: 60px;
+}
+
+.desc-info {
+  margin-left: 10px;
+  width: 600px;
+}
+
+.log-desc {
+   display: flex;
+  justify-content: flex-start;
+}
+
+
+.log-desc p {
+  font-size: 10px;
+
+}
+
+.logo {
+  width: 500px;
+  margin-right: 20px;
+}
+
+#kard1 {
+  display: flex;
+  justify-content: flex-start;
+}
+
+#description {
+  border: none;
+  outline: none;
+  font-size: 10px;
+  width: 98%;
+  height: 100px;
+}
+
+#team-description {
+  border: none;
+  outline: none;
+  font-size: 10px;
+  width: 100%;
+  height: 60px;
+}
+
+
+#last {
+  width: 1080px;
+}
+
+.comp-info {
+  padding-left: 0px;
+}
+
+.titre {
+  font-size: 10px;
+  font-weight: bold;
+}
+
+.kard {
+  background-color: white;
+  height: 200px;
+  padding: 20px;
+}
+
+.tm {
+  background-color: white;
+  height: 400px;
+  padding: 20px;
+}
+
+.tm-bis {
+  background-color: white;
+  height: 300px;
+  padding: 20px;
+}
+
+.road {
+  background-color: white;
+  height: 250px;
+  padding: 20px;
+}
+
+.art {
+  background-color: white;
+  height: 100px;
+  padding: 20px;
+}
+
+
+.titre {
+  margin-bottom: 10px;
+}
+
+.first-block {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.second-block {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 40px;
+}
+
+.company {
+  height: 240px;
+  padding-left: 0px;
+}
+
+.number {
+  height: 240px;
+}
+
+.team {
+  height: 420px;
+  margin-right: 20px;
+  padding-left: 0px;
+}
+
+.roadmap {
+  height: 250px;
+  margin-bottom: 50px;
+}
+
+.articles {
+  height: 100px;
+}
+
+#next {
+  width: 120px;
+  background-color: #090131;
+  color: white;
+}
+
+.hubss {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: -55px;
+  margin-left: 120px;
+
+}
+
+.carrd {
+  margin-left: 10px;
+  background-color: white;
+  width: 250px;
+  height: 80px;
+  font-size: 10px;
+  border-radius: 5px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  padding: 15px;
+}
+
+.carrd:hover {
+    background-color: #EDEAFA;
+
+}
+
+.checks {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.form-check {
+  font-size: 10px;
+}
+
+
+label {
+  margin-right: 20px;
+}
+
+
+.form-check-input {
+  margin-top: 0px;
+  color: black;
+}
+
+.nav-link:hover {
+  color: white;
+}
+
+.nav-link.active {
+  background-color: #090131 !important;
+}
+
+  .blanc {
+    height: 800px;
+    padding-top: 200px;
+    padding-left: 70px;
+  }
+
+  .blanc h4 {
+    color: #777581;
+  }
+
+#all {
+  height: 800px;
+  overflow-y: scroll;
+}
+
+#list-example {
+  background-color: #090131;
+  padding-left: 5px;
+  padding-top: 30px;
+}
+
+.show {
+  display: block !important;
+}
+
+.imag {
+  position: relative;
+  margin-top: -632px;
+  display: none;
+}
+
+.timezon {
+  position: relative;
+  margin-top: -632px;
+  display: none;
+}
+
+.latam {
+  position: relative;
+  margin-top: -632px;
+  display: none;
+}
+
+#list-item-3 {
+  margin-top: 200px!important;
+}
+
+
+
+</style>
+
+<script>
+const check = document.getElementById("defaultCheck1");
+const img = document.querySelector(".timezon");
+  check.addEventListener("change", (event) => {
+    img.classList.toggle("show");
+  });
+
+const check2 = document.getElementById("defaultCheck2");
+const img2 = document.querySelector(".imag");
+  check2.addEventListener("change", (event) => {
+    img2.classList.toggle("show");
+  });
+
+const check3 = document.getElementById("defaultCheck3");
+const img3 = document.querySelector(".latam");
+  check3.addEventListener("change", (event) => {
+    img3.classList.toggle("show");
+  });
+</script>
+
+
+

@@ -5,6 +5,10 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+require 'open-uri'
+
+Company.destroy_all
 User.destroy_all
 Req.destroy_all
 Candidate.destroy_all
@@ -13,12 +17,20 @@ Country.destroy_all
 Challenge.destroy_all
 Stack.destroy_all
 
+p "creating company"
+
+company1 = Company.new(name: "Datadog", industry: "Security", website: "https://www.youtube.com/embed/880BUSam7nc", languages: ["Python", "Scala"], description: "We're on a mission to build the best platform in the world for engineers to understand and scale their systems, applications, and teams.  We operate at high scale—trillions of data points per day—providing always-on alerting, metrics visualization, logs, and application tracing for tens of thousands of companies. Our engineering culture values pragmatism, honesty, and simplicity to solve hard problems the right way.", team: "The Revenue Data Engineering Teams designs, builds and runs the data pipelines and helper systems to accurately and timely manner quantify our customers’ usage across all Datadog products. This team is at the leading edge of any new product we release.", job_description: "As a Data Engineer within the Revenue & Growth group, you will work with Spark and big data tooling to build highly reliable, verifiably-accurate data processing pipelines for a large scale mission-critical process. This team ingests the full firehose of data we receive each day - literally trillions of data points and petabytes of data.")
+company1.photo.attach(io: File.open(File.join(Rails.root,'app/assets/images/datadog.png')), filename: 'datadog.png')
+#file = URI.open("https://www.youtube.com/watch?v=880BUSam7nc")
+#company1.video.attach(io: file, filename: 'video')
+company1.save!
+
 p "creating users"
 user1 = User.new(first_name: "Sebastien", email: "seb@lewagon.org", password: "seb@lewagon.org")
-user1.photo.attach(io: File.open(File.join(Rails.root,'app/assets/images/candidate1.jpg')), filename: 'candidate1.jpg')
+user1.photo.attach(io: File.open(File.join(Rails.root,'app/assets/images/ben.png')), filename: 'ben.png')
 user1.save!
 user2 = User.new(first_name: "John", email: "John@lewagon.org", password: "John@lewagon.org")
-user2.photo.attach(io: File.open(File.join(Rails.root,'app/assets/images/candidate1.jpg')), filename: 'candidate1.jpg')
+user2.photo.attach(io: File.open(File.join(Rails.root,'app/assets/images/ben.png')), filename: 'ben.png')
 user2.save!
 
 p "creating chatroom"
@@ -27,7 +39,7 @@ chatroom1.save!
 
 p "creating reqs"
 
-req1 = Req.new(title: "Ruby Backend engineer")
+req1 = Req.new(title: "Ruby Backend engineer", company: "Datadog", languages: ["Python", "Scala"], company_description: "We're on a mission to build the best platform in the world for engineers to understand and scale their systems, applications, and teams.  We operate at high scale—trillions of data points per day—providing always-on alerting, metrics visualization, logs, and application tracing for tens of thousands of companies. Our engineering culture values pragmatism, honesty, and simplicity to solve hard problems the right way.")
 req1.save!
 
 p "creating tech hubs"
