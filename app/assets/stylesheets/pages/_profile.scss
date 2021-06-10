@@ -7,7 +7,9 @@
 .id-info {
   display: flex;
   justify-content: space-between;
-  padding: 30px;
+  padding-left: 15px;
+  padding-top: 30px;
+  padding-bottom: 20px;
     h4 {
       color: #090131;
     }
@@ -20,12 +22,12 @@
 .profile-info {
   display: flex;
   justify-content: center;
-  line-height: 6px;
+  line-height: 5px;
 }
 
 
 .info-pro {
-  margin-left: 10px;
+  margin-left: 15px;
 }
 
 #msg {

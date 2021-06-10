@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_06_161128) do
+ActiveRecord::Schema.define(version: 2021_06_09_141052) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -65,6 +65,16 @@ ActiveRecord::Schema.define(version: 2021_06_06_161128) do
     t.bigint "country_id"
     t.string "languages", default: [], array: true
     t.boolean "selected", default: false
+    t.string "overlap"
+    t.string "area_median"
+    t.string "notice_period"
+    t.string "share_tax"
+    t.string "healthcare"
+    t.string "other_benefits"
+    t.string "tools", default: [], array: true
+    t.string "practice"
+    t.string "career_paths", default: [], array: true
+    t.string "next_job"
     t.index ["country_id"], name: "index_candidates_on_country_id"
     t.index ["tech_hub_id"], name: "index_candidates_on_tech_hub_id"
   end
@@ -81,6 +91,8 @@ ActiveRecord::Schema.define(version: 2021_06_06_161128) do
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "candidate_id"
+    t.index ["candidate_id"], name: "index_chatrooms_on_candidate_id"
   end
 
   create_table "companies", force: :cascade do |t|
@@ -95,6 +107,13 @@ ActiveRecord::Schema.define(version: 2021_06_06_161128) do
     t.string "languages", default: [], array: true
   end
 
+  create_table "competitors", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "tech_hub_id"
+    t.index ["tech_hub_id"], name: "index_competitors_on_tech_hub_id"
+  end
+
   create_table "countries", force: :cascade do |t|
     t.string "name"
     t.text "benefits"
@@ -103,6 +122,16 @@ ActiveRecord::Schema.define(version: 2021_06_06_161128) do
     t.string "currency"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "jobs", force: :cascade do |t|
+    t.string "title"
+    t.string "company_name"
+    t.string "years"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "candidate_id"
+    t.index ["candidate_id"], name: "index_jobs_on_candidate_id"
   end
 
   create_table "messages", force: :cascade do |t|
@@ -151,6 +180,7 @@ ActiveRecord::Schema.define(version: 2021_06_06_161128) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "languages", default: [], array: true
+    t.string "tools", default: [], array: true
   end
 
   create_table "stacks", force: :cascade do |t|
@@ -163,6 +193,7 @@ ActiveRecord::Schema.define(version: 2021_06_06_161128) do
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "industries", default: [], array: true
   end
 
   create_table "users", force: :cascade do |t|

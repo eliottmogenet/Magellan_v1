@@ -1,0 +1,286 @@
+
+
+<div class="id-info">
+  <div class="profile-info">
+                <div>
+                  <%= cl_image_tag @candidate.photo.key, width: 60, height: 60 %>
+                </div>
+              <div class="info-pro">
+                  <h5><%= @candidate.first_name + " " + @candidate.last_name %></h5>
+                  <p><%= @candidate.job %> (<%= @candidate.job_status %>) </p>
+                  <p id="loc"><%= @candidate.location + " " %><i class="fab fa-github"></i><%= + " " %><i class="fab fa-linkedin-in"></i></p>
+              </div>
+    </div>
+</div>
+
+<div class="choices">
+  <%= link_to candidate_chatroom_path(@candidate, @chatroom), class: 'choice'  do %> Start <i class="fas fa-paper-plane"></i> <% end  %>
+  <%= link_to save_candidate_path(@candidate), method: :post, class: 'choice' ,id: 'dis' do %> Save <i class="fas fa-folder-open"></i><% end  %>
+  <%= link_to archive_candidate_path(@candidate), method: :post, class: 'choice' ,id: 'dis' do %> Archive <i class="fas fa-archive"></i><% end %>
+</div>
+<div class="profile-nav">
+<ul class="nav">
+  <li class="nav-item">
+    <a class="nav-link active" id="pills-contact-tab" data-toggle="pill" href="#pills-location" role="tab" aria-controls="pills-home" aria-selected="true">Location</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-skills" role="tab" aria-controls="pills-profile" aria-selected="false">Skills</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-expectations" role="tab" aria-controls="pills-contact" aria-selected="false">Expectations</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-background" role="tab" aria-controls="pills-contact" aria-selected="false">Background</a>
+  </li>
+</ul>
+<%= cl_image_tag("Line_6_u4e9nl", width: 280, style: 'margin-left: 15px') %>
+</div>
+<div class="tab-content" id="pills-tabContent">
+  <div class="tab-pane fade show active" id="pills-location" role="tabpanel" aria-labelledby="pills-home-tab">
+    <div class="loca">
+      <p>Timezone : <%= @candidate.timezone %></p>
+      <p><b><%= @candidate.overlap %> overlap</b> with your team </p>
+      <div class="team-overlap">
+        <%= cl_image_tag @users[2].photo.key, height: 22, width: 22 %>
+        <div style="margin-left: 10px">
+          <p><b><%= rand(6..9) %> </b> hours with <%= @users[2].first_name %></p>
+        </div>
+      </div>
+      <div class="team-overlap">
+        <%= cl_image_tag @users[3].photo.key, height: 22, width: 22 %>
+        <div style="margin-left: 10px">
+          <p><b><%= rand(6..9) %></b> hours with <%= @users[3].first_name %></p>
+        </div>
+      </div>
+      <div class="team-overlap">
+        <div>
+         🏠
+        </div>
+        <p style="margin-top: 4px; margin-left: 10px;"><b><%= rand(6..9) %></b> hours with HQ </p>
+      </div>
+    </div>
+      <%= cl_image_tag("Line_6_u4e9nl", width: 280, style: 'margin-left: 15px') %>
+    <div class="loca">
+      <h5 style="font-size: 15px">Compensation</h5>
+      <p>💵 Expected : <b> $ <%= @candidate.expected_wage %> K </b><small>(- <%= rand(1..15)%> % of your global floor)</small></p>
+      <p>📏 Area median : <%= @candidate.area_median %> </p>
+      <p>🗓 Notice period : <%= @candidate.notice_period %> </p>
+    </div>
+      <%= cl_image_tag("Line_6_u4e9nl", width: 280, style: 'margin-left: 15px') %>
+    <div class="loca">
+      <h5 style="font-size: 15px">Benefits</h5>
+      <p>🚑 <%= @candidate.healthcare %><small>(average cost $2K month)</small></p>
+      <p>👴 <%= @candidate.other_benefits %> </p>
+    <%= cl_image_tag("Line_6_u4e9nl", width: 280, style: 'margin-left: 15px') %>
+    </div>
+    <div class="loca">
+      <h5 style="font-size: 15px">Tech hub</h5>
+      <p> <%= @tech_hubs.first.name %> <small>(<%= rand(1..3)%> matchs)</small></p>
+       <%# @tech.hubs.each do | hub| %>
+          <%# hub.competitors.each do | competitor | %>
+        <div>
+          <%#= cl_image_tag competitor.photo.key, height: 22, width: 22 %>
+        </div>
+         <%#end %>
+       <%#end %>
+    </div>
+  </div>
+  <div class="tab-pane fade" id="pills-skills" role="tabpanel" aria-labelledby="pills-home-tab">
+    <div class="staks">
+          <% @candidate.languages.each do |language | %>
+              <div class="stack">
+                <p><%= language %></p>
+              </div>
+            <% end  %>
+          </div>
+                      <div class="staks">
+                      <% @candidate.tools.each do |tool| %>
+                      <div class="stack" style="background-color: #EDEAFA">
+                      <p style="color: black"><%= tool %></p>
+                    </div>
+                  <% end  %>
+              </div>
+
+    <div class="loca">
+      <h5 style="font-size: 15px; padding-top: 30px">Challenges</h5>
+      <% @candidate.challenges.each_with_index do | challenge, index | %>
+        <p><%= index + 1 %> - <%= challenge.description %></p>
+        <%= cl_image_tag("Line_6_u4e9nl", width: 280, style: 'margin-left: 15px') %>
+      <% end  %>
+  </div>
+  <div class="loca">
+    <h5 style="font-size: 15px; padding-top: 30px">Soft skills </h5>
+    <p> <i class="fas fa-user-friends"></i>Worked with : <%= @candidate.softskills %></p>
+    <p><i class="fas fa-tasks"></i> <%= @candidate.practice %></p>
+  </div>
+</div>
+<div class="tab-pane fade" id="pills-expectations" role="tabpanel" aria-labelledby="pills-home-tab">
+  <div class="loca">
+    <h5 style="font-size: 15px; padding-top: 30px">Next technical steps</h5>
+    <p> <%= @candidate.next_steps %></p>
+    <%= cl_image_tag("Line_6_u4e9nl", width: 280, style: 'margin-left: 15px') %>
+    <p style="color: #777581">Stacks and tools to explore</p>
+  </div>
+  <%= cl_image_tag("Line_6_u4e9nl", width: 280, style: 'margin-left: 15px') %>
+  <div class="loca">
+    <h5 style="font-size: 15px; padding-top: 30px">Next career steps</h5>
+    <p> <%= @candidate.next_job %></p>
+  </div>
+</div>
+  <div class="tab-pane fade" id="pills-background" role="tabpanel" aria-labelledby="pills-home-tab">
+      <div class="loca">
+        <h5 style="font-size: 15px; padding-top: 30px">Work experience</h5>
+        <% @candidate.jobs.each do | job | %>
+          <div class="fomer-job" style="
+    display: flex;
+    justify-content: flex-start;">
+            <div>
+              <%= cl_image_tag job.photo.key, height: 50, width: 50, crop: :fit %>
+            </div>
+            <div class="job-desc">
+              <p><b> <%= job.company_name %></b></p>
+              <p> <%= job.years %></p>
+              <p><%= job.title %></p>
+            </div>
+          </div>
+          <%= cl_image_tag("Line_6_u4e9nl", width: 280, style: 'margin-left: 15px') %>
+        <% end  %>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+<style>
+
+.job-desc {
+  margin-left: 10px;
+  line-height: 5px;
+}
+
+.former-job {
+  display: flex;
+  justify-content: flex-start !important;
+}
+
+
+.staks {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.stack {
+  margin-top: 5px;
+  margin-left: 6px;
+  background-color: #090131;
+  display: block;
+  text-align: center;
+  vertical-align: middle;
+  border-radius: 10px;
+  width: 100px;
+  height: 30px;
+  line-height: 30px;
+  p {
+    font-size: 10px;
+    color: white;
+  }
+}
+
+small {
+  color: #777581;
+  font-size: 8px;
+  margin-left: 0px !important;
+}
+
+
+.team-overlap {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.loca {
+  margin-left: 15px;
+}
+
+.tab-pane p {
+  font-size: 10px
+}
+
+.tab-pane {
+  padding-right: 20px;
+}
+
+#pills-location p {
+  line-height: 9px;
+}
+
+
+.profile-nav {
+  font-size: 10px;
+  margin-top: 15px;
+  margin-bottom: 0px ;
+}
+
+#pills-contact-tab {
+  margin-right: 0px;
+}
+
+.choices {
+  padding-left: 15px;
+}
+
+.choice {
+  color: white;
+  padding: 10px;
+  background-color: #4175FE;
+  border-radius: 5px;
+  font-size: 10px;
+  margin-right: 10px;
+}
+
+.choice:hover {
+  background-color: blue;
+  color: white;
+  text-decoration: none;
+}
+
+#dis {
+  background-color: #F0F0F1;
+  color: #090131;
+}
+
+#dis:hover{
+  background-color: blue;
+  color: white;
+  text-decoration: none;
+}
+
+.info-pro p {
+  font-size: 12px;
+  margin-bottom: 0px !important;
+  color: #777581;
+}
+
+#loc {
+  color: #090131;
+}
+
+.info-pro h5 {
+  font-size: 20px;
+  color: #090131;
+}
+
+
+
+
+
+
+
+
+
+
+
+</style>

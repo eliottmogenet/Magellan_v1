@@ -41,24 +41,35 @@
                 </div>
                 <div class="form-check">
                   <input class="form-check-input" type="checkbox" value="" id="defaultCheck3">
-                  <label class="form-check-label" for="defaultCheck1">
-                    See team members
+                  <label class="form-check-label" for="defaultCheck1" data-toggle="modal" data-target="#exampleModal">
+                    See team members + Add
                   </label>
                 </div>
               </div>
               <%= cl_image_tag("World_map__blue_dots_2_1_b7lldt", width: 970, height: 632) %>
-              <%= cl_image_tag("Group_6_7_sxnqpl", width: 970, height: 632, class: "imag") %>
-              <%= cl_image_tag("Group_7_wlr913", width: 970, height: 632, class: "timezon") %>
+              <%= cl_image_tag("Group_14_2_gyyrpk", width: 970, height: 632, class: "imag") %>
+              <%= cl_image_tag("Group_7_dq7rsf", width: 970, height: 632, class: "timezon") %>
               <%= cl_image_tag("Group_8_j8irs6", width: 970, height: 632, class: "latam") %>
+              <%= cl_image_tag("Group_14_3_b2xufp", width: 970, height: 632, class: "team-world") %>
+              <%= cl_image_tag("Group_16_tgmih2", width: 970, height: 632, class: "canada") %>
+              <%= cl_image_tag("Group_18_lxvgu3", width: 970, height: 632, class: "usa-west") %>
               <div class="hubss">
-                <% @tech_hubs.each do | hub |%>
-                  <div class="carrd">
-                    <b><%= hub.name %></b>
+                  <div class="carrd" id="tech1">
+                    <b><%= @tech_hubs[0].name %></b>
                       <p>Countries | Timezones </p>
                       <p></p>
                   </div>
-                <% end  %>
-                <button id="next">Next ></button>
+                  <div class="carrd" id="tech2">
+                    <b><%= @tech_hubs[1].name %></b>
+                      <p>Countries | Timezones </p>
+                      <p></p>
+                  </div>
+                  <div class="carrd" id="tech3">
+                    <b><%= @tech_hubs[2].name %></b>
+                      <p>Countries | Timezones </p>
+                      <p></p>
+                  </div>
+                <a href="#list-item-2" style="scroll-behavior: smooth;"><button id="next">Next ></button></a>
               </div>
           </div>
           <div class="blanc" id="list-item-2">
@@ -77,7 +88,7 @@
                           <p style="margin-top: -12px"><%= @companies.first.industry %></p>
                         </div>
                       </div>
-                       <textarea id="description" placeholder="<%= @companies.first.description %>"></textarea>
+                       <textarea id="description" placeholder="Type a small company description"></textarea>
                     </div>
                   <div class="video">
                     <iframe width="193" height="135" src="<%= @companies.first.website %>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -115,21 +126,22 @@
               <div class="second-block ">
                 <div class="col-3 team"><p class="titre">The future candidate teamates</p>
                   <div class="tm">
-                    <textarea class="team-title" type="text" style="font-size: 15px; width: 200px" placeholder="The Revenue Data Engineering Team"></textarea>
+                    <textarea class="team-title" type="text" style="font-size: 15px; width: 200px" placeholder="Team's name"></textarea>
                     <p><i class="fas fa-user" style="width: 10px;"></i> <input class="sizeteam" type="text" placeholder="15"></input> people (+ <input class="sizeteam" type="text" placeholder="10"></input> in 2021) </p>
                     <p><i class="fas fa-globe-americas"></i><input class="sizeteam" type="text" placeholder="12"></input> full-remote </p>
                     <hr>
                     <h6>Team members </h6>
-                    <p>+ Add members of the team </p>
+                    <p style="color: #4175FE" data-toggle="modal" data-target="#exampleModal">+ Add members of the team </p>
                     <div>
-                      <% @users.each do | user | %>
+                      <% @users.drop(2).each do | user | %>
                       <div class="user-select">
                         <div class="user-select-photo">
                       <%= cl_image_tag user.photo.key, height: 35, width: 35 %>
                         </div>
                         <div>
-                         <p><%= user.first_name %><%= user.last_name %> </p>
-                         <p style="margin-top: -15px">VP Engineering </p>
+                         <p><%= user.first_name %> <%= user.last_name %> </p>
+                         <p style="margin-top: -15px"><%= user.job %><br>
+                          📍 <%= user.location %></p>
                         </div>
                       </div>
                   <% end  %>
@@ -138,7 +150,7 @@
               </div>
                 <div class="col-8 comp-info">
                   <div class="roadmap"><p class="titre">The technical roadmap of the team in the upcoming months </p><div class="road">
-                    <textarea id="team-description" placeholder="<%= @companies.first.team %>"></textarea>
+                    <textarea id="team-description" placeholder="Describe the role of the team and its missions"></textarea>
                     <%= cl_image_tag("Group_9_2_jrjtom", width: 402, height: 30, style: "margin-left: 150px") %>
                     <div class="goals">
                       <textarea class="goal" type="text" placeholder="Describe the team's goal"></textarea>
@@ -152,15 +164,23 @@
                     </div>
                   <% end  %>
                   <div>
-                    <p><textarea class="step-bis" placeholder="The team works in 2 weeks sprint with scrum methods"></textarea></p>
+                    <p><textarea class="step-bis" placeholder="Describe the practices of the team (ex: Scrum, sprint..)"></textarea></p>
                   </div>
               </div>
                   </div>
                 </div>
-                  <div class="articles"><p class="titre">Articles and ressources published by the team </p><div class="art"></div></div>
+                  <div class="articles"><p class="titre">Articles and ressources published by the team </p><div class="art">
+                    <p><i class="fas fa-link"></i><textarea class="job" type="text" placeholder="Add a link "></textarea></p>
+                    <p><i class="fas fa-link"></i><textarea class="job" type="text" placeholder="Add a link"></textarea></p>
+                  </div>
+
+
+                </div>
                 </div>
             </div>
+            <button id="next2">Next ></button>
           </div>
+
 
          <div class="blanc" id="list-item-3">
             <h4>The job in details </h4>
@@ -175,7 +195,7 @@
                         <b><input class="ttile" type="text" style="font-size: 15px" placeholder="Job title"></b>
                       </div>
                       </div>
-                  <textarea id="description" style="margin-top: 15px" placeholder="As a Data Engineer within the Revenue & Growth group, you will work with Spark and big data tooling to build highly reliable, verifiably-accurate data processing pipelines for a large scale mission-critical process. This team ingests the full firehose of data we receive each day - literally trillions of data points and petabytes of data."></textarea>
+                  <textarea id="description" style="margin-top: 15px" placeholder="Describe the job and the overall missions"></textarea>
                 </div>
               </div>
                 <div class="col-3 number"><p class="titre">Main technical requirements</p><div class="kard">
@@ -189,7 +209,14 @@
               </div>
                 <hr>
               <div>
-
+                <p style="font-size: 10px;">Frameworks, librairies or tools:</p>
+                  <div class="staks">
+                      <% @reqs.first.tools.each do |tool| %>
+                      <div class="stack" id="tool-stack">
+                      <p style="color: black"><%= tool %></p>
+                    </div>
+                  <% end  %>
+              </div>
               </div>
                 </div>
               </div>
@@ -280,11 +307,12 @@
                         <textarea class="step" type="text" placeholder="Describe the steps and who is involved"></textarea>
                         <textarea class="step" type="text" placeholder="Describe the steps and who is involved"></textarea>
                         <textarea class="step" type="text" placeholder="Describe the steps and who is involved"></textarea>
-                        <textarea class="step" type="text" placeholder="Describe the steps and who is involved"></textarea>-
+                        <textarea class="step" type="text" placeholder="Describe the steps and who is involved"></textarea>
                       </div>
                     </div>
                   </div>
               </div>
+
 
          <div class="blanc" id="list-item-4">
           <h4>Launch a search </h4>
@@ -322,6 +350,12 @@
                       VP role
                     </label>
                   </div>
+                  <div>
+                    <p> Global floor: <textarea class="income1" type="text" placeholder="60"></textarea> K  <select id="number_select">
+                          <option value="1"> $ </option>
+                          <option value="2"> € </option>
+                          <option value="3"> £ </option></select></p>
+                  </div>
                 </div>
 
 
@@ -335,7 +369,10 @@
                           <option value="3"> advanced </option>
                           <option value="3"> expert </option></select> level in
                       <input class="language_select" list="europe-countries" placeholder="Type a language" id="fist_one"><br><br>
-                      AND / OR  <select id="number_select">
+                      <select id="number_select">
+                          <option value="1"> and </option>
+                          <option value="2"> or </option></select>
+                          <select id="number_select">
                           <option value="1"> a junior </option>
                           <option value="2"> an intermediate </option>
                           <option value="3"> an advanced </option>
@@ -400,16 +437,113 @@
                 </div>
               </div>
               </div>
-              <div class="company" id="last"><p class="titre">Who will be part of the sourcing ?</p><div class="kard"></div>
+              <div class="company" id="last"><p class="titre">Who will be part of the sourcing ?</p><div class="kard">
+                <p style="color: #4175FE; font-size: 10px" data-toggle="modal" data-target="#exampleModal">+ Add members of the team </p>
+                  <div class="sourcing-team">
+                      <% @users.drop(0).each do | user | %>
+                      <div class="user-select">
+                        <div class="user-select-photo">
+                      <%= cl_image_tag user.photo.key, height: 35, width: 35 %>
+                        </div>
+                        <div style="margin-left: 5px; margin-right: 10px;">
+                         <p><%= user.first_name %> <%= user.last_name %> </p>
+                         <p style="margin-top: -15px"><%= user.job %></p>
+                        </div>
+                      </div>
+                  <% end  %>
+                    </div>
+              </div>
             </div>
+            <a href="/candidates/<%= @candidates.first.id %>/map"><button id="next2">Launch 🚀</button></a>
          </div>
       </div>
     </div>
 
 
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add team members <i class="fab fa-slack"></i></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div>
+                      <% @users.each do | user | %>
+                      <div class="user-select">
+                        <div class="user-select-photo">
+                      <%= cl_image_tag user.photo.key, height: 35, width: 35 %>
+                        </div>
+                        <div>
+                         <p><%= user.first_name %> <%= user.last_name %> </p>
+                         <p style="margin-top: -15px"><%= user.job %> 📍 <%= user.location %></p>
+                        </div>
+                      </div>
+                  <% end  %>
+                    </div>
+      </div>
+      <div class="modal-footer">
+        <button id="ad">+ Add </button>
+      </div>
+    </div>
+  </div>
+</div>
+
 </body>
 
 <style>
+
+#tool-stack {
+  background-color: #EDEAFA;
+  color: black;
+}
+
+.sourcing-team {
+  display: flex;
+  justify-content: flex-start;
+  font-size: 10px;
+}
+
+.income1 {
+  border: none;
+  outline: none;
+  width: 50px;
+  font-size: 10px;
+  height: 13px;
+}
+
+#last {
+  margin-top: -90px;
+  margin-bottom: 10px;
+}
+
+
+#next2 {
+  width: 120px;
+  background-color: #090131;
+  color: white;
+  margin-left: 920px;
+  margin-top: -50px !important;
+}
+
+
+#ad {
+  width: 100px;
+  height: 40px;
+  font-size: 10px;
+}
+
+#ad:hover {
+  background-color: blue;
+}
+
+.modal-content {
+  font-size: 10px;
+  color: black;
+}
 
 .requirly {
   padding-top: 30px;
@@ -712,6 +846,7 @@ select {
   justify-content: flex-start;
   margin-top: -55px;
   margin-left: 120px;
+  z-index: 1;
 
 }
 
@@ -728,7 +863,7 @@ select {
 
 .carrd:hover {
     background-color: #EDEAFA;
-
+    cursor: pointer;
 }
 
 .checks {
@@ -796,16 +931,39 @@ label {
   display: none;
 }
 
+.team-world {
+  position: relative;
+  margin-top: -632px;
+  display: none;
+}
+
 .latam {
   position: relative;
   margin-top: -632px;
   display: none;
 }
 
+.canada {
+  position: relative;
+  margin-top: -632px;
+  display: none;
+}
+
+.usa-west {
+  position: relative;
+  margin-top: -632px;
+  display: none;
+}
+
+
+
 #list-item-3 {
   margin-top: 200px!important;
 }
 
+.back {
+  background-color: #EDEAFA;
+}
 
 
 </style>
@@ -823,11 +981,34 @@ const img2 = document.querySelector(".imag");
     img2.classList.toggle("show");
   });
 
-const check3 = document.getElementById("defaultCheck3");
+const tech2 = document.getElementById("tech2");
 const img3 = document.querySelector(".latam");
-  check3.addEventListener("change", (event) => {
+  tech2.addEventListener("click", (event) => {
     img3.classList.toggle("show");
+    tech2.classList.toggle("back");
   });
+
+const checky = document.getElementById("defaultCheck3");
+const ia = document.querySelector(".team-world");
+  checky.addEventListener("click", (event) => {
+    ia.classList.toggle("show");
+  });
+
+const tech3 = document.getElementById("tech3");
+const img4 = document.querySelector(".canada");
+  tech3.addEventListener("click", (event) => {
+    img4.classList.toggle("show");
+    tech3.classList.toggle("back");
+  });
+
+const tech1 = document.getElementById("tech1");
+const img5 = document.querySelector(".usa-west");
+  tech1.addEventListener("click", (event) => {
+    img5.classList.toggle("show");
+    tech1.classList.toggle("back");
+  });
+
+
 </script>
 
 

@@ -1,8 +1,16 @@
 // Specific CSS for your home-page
 
+html, body {margin: 0; height: 100%; overflow: hidden}
+
 .row {
   height: 100vh;
 }
+
+.nav {
+  display: flex;
+  justify-content: flex-start !important;
+}
+
 
 #reqs_bar {
   height: 100%;
@@ -161,4 +169,15 @@ button {
   height: 600px;
   overflow-y: scroll;
 }
+
+#pills-contact-tab {
+  margin-right: 3px;
+
+}
+
+
+
+
+
+
 

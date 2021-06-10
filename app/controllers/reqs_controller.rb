@@ -5,6 +5,7 @@ class ReqsController < ApplicationController
       end
 
       def new
+        @candidates = Candidate.all
         @users = User.all
         @reqs = Req.all
         @tech_hubs = TechHub.all

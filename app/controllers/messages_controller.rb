@@ -6,8 +6,10 @@ class MessagesController < ApplicationController
     @message = Message.new(message_params)
     @message.chatroom_id = @chatroom.id
     @message.user_id = User.first.id
+    @candidate.status = "Current"
+    @candidate.save!
     if @message.save
-      redirect_to candidate_chatroom_path(@candidate, @chatroom, anchor: "message-#{@message.id}")
+      redirect_to candidate_chatroom_path(@candidate, @chatroom)
     else
       p "fail"
     end

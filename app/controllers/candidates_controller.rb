@@ -6,6 +6,7 @@ class CandidatesController < ApplicationController
   end
 
   def profile
+    @tech_hubs = TechHub.all
     @candidate = Candidate.find(params[:id])
     @new_candidates = Candidate.where(status: "New")
 
@@ -15,6 +16,8 @@ class CandidatesController < ApplicationController
   end
 
   def map
+    @tech_hubs = TechHub.all
+    @users = User.all
     @candidate = Candidate.find(params[:id])
     @new_candidates = Candidate.where(status: "New")
 
@@ -24,8 +27,13 @@ class CandidatesController < ApplicationController
   end
 
   def discover
+    @candidates = Candidate.all
     @candidate = Candidate.find(params[:id])
     @candidate.status = "autre"
+       @candidates.each do |candidate|
+        candidate.selected = false
+        candidate.save
+      end
     @candidate.selected = true
     @candidate.save
     redirect_to map_candidate_path(@candidate)
@@ -40,13 +48,35 @@ class CandidatesController < ApplicationController
     @candidate = Candidate.find(params[:id])
     @candidate.selected = true
     @candidate.save
-    redirect_to map_candidate_path(@candidate)
+    redirect_to map_candidate_path(@candidate) #tab: "notification"
   end
 
   def new
     @tech_hubs = TechHub.all
     @req = Req.new
+  end
 
+  def save
+    @candidate = Candidate.find(params[:id])
+    @next_candidate = Candidate.find(params[:id].next)
+    @candidate.status = "saved"
+    @next_candidate.selected = true
+    @candidate.selected = false
+    @candidate.save
+    @next_candidate.save
+    redirect_to map_candidate_path(@next_candidate)
+  end
+
+
+  def archive
+    @candidate = Candidate.find(params[:id])
+    @next_candidate = Candidate.find(params[:id].next)
+    @candidate.status = "archived"
+    @next_candidate.selected = true
+    @candidate.selected = false
+    @candidate.save
+    @next_candidate.save
+    redirect_to map_candidate_path(@next_candidate)
   end
 
 

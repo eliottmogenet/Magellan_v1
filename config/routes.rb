@@ -15,6 +15,8 @@ Rails.application.routes.draw do
     member do
       post 'discover', to: "candidates#discover"
       post 'select', to: "candidates#select"
+      post 'save', to: "candidates#save"
+      post 'archive', to: "candidates#archive"
     end
   end
 end

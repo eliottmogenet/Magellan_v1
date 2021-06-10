@@ -2,33 +2,50 @@
       <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-              <%= link_to "Geography", map_candidate_path(@candidate), class: "nav-link", id: "mapy" %>
+            <li class="nav-item" id="mapy">
+              <i class= "fas fa-map-marker-alt " id="iconn"></i><%= link_to 'Geography', map_candidate_path(@candidate), :class => "nav-link", id: "mappy" %>
             </li>
             <li class="nav-item">
-              <%= link_to "Profile", profile_candidate_path(@candidate), class: "nav-link", id: "profy" %>
-            </li>
-            <li class="nav-item">
-              <%= link_to "Conversation",  candidate_chatroom_path(@candidate, @chatroom), class: "nav-link", id: "convy" %>
+              <i class="fas fa-paper-plane" id="iconn2"></i><%= link_to "Messages",  candidate_chatroom_path(@candidate, @chatroom), class: "nav-link", id: "convy" %>
             </li>
             <li class="nav-item dropdown">
-              <%= link_to "Edit search", "#", class: "nav-link", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+             <%= link_to "Edit search", "#", class: "nav-link", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %><i class="fas fa-chevron-down" id="iconn2"></i>
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                <%= link_to "Action", "#", class: "dropdown-item" %>
-                <%= link_to "Another action", "#", class: "dropdown-item" %>
+                <%= link_to "TechHub", "#", class: "dropdown-item" %>
+                <%= link_to "Team", "#", class: "dropdown-item" %>
+                <%= link_to "Job", "#", class: "dropdown-item" %>
+                <%= link_to "Criteria", "#", class: "dropdown-item" %>
               </div>
             </li>
           </ul>
         </div>
       </div>
-      <%= cl_image_tag("Line_16_wph4ou",
-              width: 840, height: 4) %>
-
 <style>
+
+#mapy:hover{
+  color: black;
+}
+
+
+#iconn2 {
+  color: #777581;
+}
+
+i {
+  padding-top: 10px;
+}
+
+.nav-item {
+  display: flex;
+  justify-content: flex-start;
+}
 
 .navbar {
   background-color: #F4F4F4;
   margin-top: 10px;
+  border-bottom-color: white !important;
+  border-bottom-width: thin !important;
+  border-bottom: solid;
 }
 
 .navbar-nav {
@@ -44,8 +61,8 @@
 }
 
 #navbarDropdown {
-  margin-left: 100px;
-  margin-right: none;
+  margin-left: 330px;
+  margin-right: 0px !important;
 }
 
 .active {

@@ -1,5 +1,6 @@
 
-<div class="row">
+<body>
+  <div class="row">
     <div class="col-2" style="background-color: #090131">
       <div style="head">
         <%= cl_image_tag("Group_2_vnmtnk",
@@ -18,12 +19,14 @@
       <%= render template: "candidates/home" %>
     </div>
     <div class="col-7">
-       <%= render 'shared/navbar' %>
+      <%= render 'shared/navbar' %>
+    <div class="row">
+      <div class="col-7 mapp">
 
-  <div class="head-msg">
+        <div class="head-msg">
     <div style="margin-left: 30px; margin-top: 5px">
         <%= cl_image_tag @users.first.photo.key, height: 35, width: 35 %>
-      <% @users.each do |user| %>
+      <% @users.drop(1).each do |user| %>
         <%= cl_image_tag user.photo.key, height: 35, width: 35, :class => "img_preview"%>
       <% end %>
     </div>
@@ -33,8 +36,26 @@
   </div>
 <hr>
 
-
 <div id="messages" data-chatroom-id="<%= @chatroom.id %>">
+
+  <div class="msg-letter">
+  <div class="letter-head">
+    <div>
+      <%= cl_image_tag @users.first.photo.key, height: 35, width: 35, style: "z-index: 1" %>
+      <%= cl_image_tag @candidate.photo.key, height: 35, width: 35, style: "margin-left: -10px;" %>
+    </div>
+    <div class="who">
+      <p><%= @users.first.first_name %> <%= @users.first.last_name %></p>
+      <small>To : <%= @candidate.first_name %> <%= @candidate.last_name %></small>
+    </div>
+  </div>
+  <hr>
+  <div class="conent">
+    <textarea id="my-msg" placeholder="Hello <%= @candidate.first_name %>"></textarea>
+    <button id="one_way">Start conversation </button>
+  </div>
+</div>
+
   <% @messages.each do |message| %>
     <div class="message-container" id="message-<%= message.id %>">
       <i class="author">
@@ -53,24 +74,92 @@
   </div>
   <div class="formulaire">
     <%= simple_form_for [ @candidate, @chatroom, @message ] do |f| %>
-    <%= f.input :content, label: false, placeholder: "Type your comment..." %>
+    <%= f.input :content, label: false, placeholder: "@ping your team..." %>
   </div>
-  <button id="send"><%= f.button :submit, 'Send' %><i class="fas fa-paper-plane" style="color: white"></i></button>
+  <button id="send"><%= f.button :submit, 'Send' %></button>
   <% end %>
 </div>
 <p id="pose"><i class="fas fa-toggle-on" style="color: black"></i> Internal </p>
     </div>
-</div>
+      <div class="col-5 profile">
+        <%= render template: "candidates/profile2" %>
+      </div>
+    </div>
+
+
+
+</body>
 
 <style>
 
+#one_way {
+  font-size: 10px;
+  width: 150px;
+  height: 40px;
+  padding: 5px;
+  margin-top: 0px;
+  margin-left: 260px;
+}
+
+#one_way:hover {
+  background-color: blue;
+}
+
+#send:hover {
+  background-color: blue;
+}
+
+#my-msg {
+  border: none;
+  outline: none;
+  font-size: 10px;
+  width: 100%;
+  height: 70px;
+  padding: 15px;
+  padding-top: 5px;
+}
+
+.who {
+  padding-top: 10px;
+  margin-left: 10px;
+}
+
+.letter-head {
+  padding: 10px;
+  display: flex;
+  justify-content: flex-start;
+  line-height: 3px;
+
+}
+
+.msg-letter {
+  background-color: white;
+  height: 220px;
+  width: 97%;
+  border-radius: 5px;
+}
+
+.profile {
+  background-color: white;
+  height: 100vh;
+}
+
+#iconn {
+  color: #777581;
+}
+
+#iconn2 {
+  color: black;
+}
+
 .navbar-nav {
-  font-size: 15px;
+  font-size: 15px !important;
 }
 
 .head-msg {
   display: flex;
   justify-content: flex-start;
+  padding-top: 10px;
 }
 
 .img_preview {
@@ -180,5 +269,23 @@ small {
   border-radius: 10px;
 }
 
+#navbarDropdown {
+  margin-left: 330px;
+  margin-right: 0px !important;
+}
+
+.sent {
+  display: none;
+}
+
 
 </style>
+
+<script>
+  const but = document.getElementById("one_way");
+  const editable = document.getElementById("my-msg");
+  but.addEventListener("click", (event) => {
+    but.classList.add("sent");
+    editable.classList.add("readonly");
+  });
+</script>

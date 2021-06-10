@@ -1,32 +1,66 @@
 
-<div class="row">
-    <div class="col-2" style="background-color: #090131">
-      <div style="head">
-        <%= cl_image_tag("Group_2_vnmtnk",
-        width: 124, height: 45, style: 'margin-top: 26px; margin-left: 20px;') %>
+<body>
+  <div class="row">
+      <div class="col-2" style="background-color: #090131">
+        <div style="head">
+          <%= cl_image_tag("Group_2_vnmtnk",
+          width: 124, height: 45, style: 'margin-top: 26px; margin-left: 20px;') %>
+        </div>
+        <div class="req_header">
+          <button> <%= link_to "+ Open new Req", new_req_path, style: "color: white; text-decoration: none;" %></button>
+        </div>
+        <%= cl_image_tag("Group_3_qaughh",
+          width: 200, height: 31, style: 'margin-left: 20px;') %>
+        <div class="list">
+          <%= render template: "reqs/home" %>
+        </div>
       </div>
-      <div class="req_header">
-        <button> <%= link_to "+ Open new Req", new_req_path, style: "color: white; text-decoration: none;" %></button>
+      <div class="col-3" style="background-color: #FFFFFF">
+        <%= render template: "candidates/home" %>
       </div>
-      <%= cl_image_tag("Group_3_qaughh",
-        width: 200, height: 31, style: 'margin-left: 20px;') %>
-      <div class="list">
-        <%= render template: "reqs/home" %>
+      <div class="col-7">
+        <%= render "shared/navbar" %>
+      <div class="row">
+        <div class="col-7 mapp">
+          <%= cl_image_tag @candidate.map.key, height:733, width: 439 %>
+        </div>
+        <div class="col-5 profile">
+          <%= render template: "candidates/profile2" %>
+        </div>
       </div>
-    </div>
-    <div class="col-3" style="background-color: #FFFFFF">
-      <%= render template: "candidates/home" %>
-    </div>
-    <div class="col-7">
-      <%= render "shared/navbar" %>
 
-      <%= cl_image_tag @candidate.map.key, style: 'padding-right: 40px;',
-        width: 825, height: 538 %>
-    </div>
-</div>
+      </div>
+  </div>
+</body>
 
 <style>
+
+.col {
+  padding-top: -20px !important;
+}
+
+.block2 {
+  display: flex;
+  justify-content: flex-start;
+}
+
+
+.mapp {
+  height: 100vh;
+}
+
+.profile {
+  background-color: white;
+  padding-top: -10px;
+  height: 100vh;
+}
+
+
   #mapy {
+    color: black;
+  }
+
+  #mappy {
     color: black;
   }
 
