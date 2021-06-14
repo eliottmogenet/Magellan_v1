@@ -37,7 +37,7 @@ Rails.application.configure do
 
   # Store uploaded files on the local file system (see config/storage.yml for options).
   config.active_storage.service = :cloudinary
-
+  heroku config:set CLOUDINARY_URL=cloudinary://479835538988599:l-rueQSDfYfix9iwL1T47X2uXEQ@dchsqyzq9
   # Mount Action Cable outside main process or domain.
   # config.action_cable.mount_path = nil
   # config.action_cable.url = 'wss://example.com/cable'
