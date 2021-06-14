@@ -123,6 +123,10 @@ button {
   text-decoration: none;
 }
 
+.info p:hover {
+    text-decoration: none !important;
+}
+
 .photo {
   margin-right: 20px;
   padding-bottom: 10px;
