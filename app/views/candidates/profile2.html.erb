@@ -41,15 +41,15 @@
       <p>Timezone : <%= @candidate.timezone %></p>
       <p><b><%= @candidate.overlap %> overlap</b> with your team </p>
       <div class="team-overlap">
-        <%= cl_image_tag @users[2].photo.key, height: 22, width: 22 %>
+        <%= cl_image_tag @users[1].photo.key, height: 22, width: 22 %>
         <div style="margin-left: 10px">
-          <p><b><%= rand(6..9) %> </b> hours with <%= @users[2].first_name %></p>
+          <p><b><%= rand(6..9) %> </b> hours with <%= @users[1].first_name %></p>
         </div>
       </div>
       <div class="team-overlap">
-        <%= cl_image_tag @users[3].photo.key, height: 22, width: 22 %>
+        <%= cl_image_tag @users[2].photo.key, height: 22, width: 22 %>
         <div style="margin-left: 10px">
-          <p><b><%= rand(6..9) %></b> hours with <%= @users[3].first_name %></p>
+          <p><b><%= rand(6..9) %></b> hours with <%= @users[2].first_name %></p>
         </div>
       </div>
       <div class="team-overlap">
