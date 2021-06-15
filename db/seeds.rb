@@ -43,7 +43,7 @@ user3 = User.new(first_name: "John", last_name: "Hasting", job: "Head of Data", 
 user3.photo.attach(io: File.open(File.join(Rails.root,'app/assets/images/ben.png')), filename: 'ben.png')
 user3.save!
 user4 = User.new(first_name: "Justin", last_name: "Banner", job: "Data scientist lead", location: "Lima - Peru", email: "Jo@lewagon.org", password: "Jo@lewagon.org")
-user4.photo.attach(io: File.open(File.join(Rails.root,'app/assets/images/justin.png')), filename: 'justin.png')
+user4.photo.attach(io: File.open(File.join(Rails.root,'app/assets/images/john.png')), filename: 'john.png')
 user4.save!
 
 
