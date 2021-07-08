@@ -12,6 +12,9 @@ class ReqsController < ApplicationController
         @companies = Company.all
       end
 
-
+      def show
+        @users = User.all
+        @reqs = Req.all
+      end
 
 end

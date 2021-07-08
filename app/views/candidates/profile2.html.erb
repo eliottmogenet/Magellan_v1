@@ -1,160 +1,263 @@
 
-
-<div class="id-info">
-  <div class="profile-info">
-                <div>
-                  <%= cl_image_tag @candidate.photo.key, width: 60, height: 60 %>
+<div class="propro">
+  <div class="id-info">
+    <div class="profile-info">
+                  <div>
+                    <%= cl_image_tag @candidate.photo.key, width: 60, height: 60 %>
+                  </div>
+                <div class="info-pro">
+                    <h5><%= @candidate.first_name + " " + @candidate.last_name %></h5>
+                    <p><%= @candidate.job %> (<%= @candidate.job_status %>) </p>
+                    <p id="loc"><%= @candidate.location + " " %><i class="fab fa-github"></i><%= + " " %><i class="fab fa-linkedin-in"></i></p>
                 </div>
-              <div class="info-pro">
-                  <h5><%= @candidate.first_name + " " + @candidate.last_name %></h5>
-                  <p><%= @candidate.job %> (<%= @candidate.job_status %>) </p>
-                  <p id="loc"><%= @candidate.location + " " %><i class="fab fa-github"></i><%= + " " %><i class="fab fa-linkedin-in"></i></p>
-              </div>
-    </div>
+      </div>
+  </div>
+
+<div class="alert alert-success collapse" role="alert" id="alert-success">
+  <h5><%= @candidate.first_name + " " + @candidate.last_name %> is in your pipeline 🎉</h5>
+  <p>Candidate replies in average in XX days. You can follow the conversation in your ATS </p>
 </div>
 
-<div class="choices">
-  <%= link_to candidate_chatroom_path(@candidate, @chatroom), class: 'choice'  do %> Start <i class="fas fa-paper-plane"></i> <% end  %>
-  <%= link_to save_candidate_path(@candidate), method: :post, class: 'choice' ,id: 'dis' do %> Save <i class="fas fa-folder-open"></i><% end  %>
-  <%= link_to archive_candidate_path(@candidate), method: :post, class: 'choice' ,id: 'dis' do %> Archive <i class="fas fa-archive"></i><% end %>
-</div>
-<div class="profile-nav">
-<ul class="nav">
-  <li class="nav-item">
-    <a class="nav-link active" id="pills-contact-tab" data-toggle="pill" href="#pills-location" role="tab" aria-controls="pills-home" aria-selected="true">Location</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-skills" role="tab" aria-controls="pills-profile" aria-selected="false">Skills</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-expectations" role="tab" aria-controls="pills-contact" aria-selected="false">Expectations</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-background" role="tab" aria-controls="pills-contact" aria-selected="false">Background</a>
-  </li>
-</ul>
-<%= cl_image_tag("Line_6_u4e9nl", width: 280, style: 'margin-left: 15px') %>
-</div>
-<div class="tab-content" id="pills-tabContent">
-  <div class="tab-pane fade show active" id="pills-location" role="tabpanel" aria-labelledby="pills-home-tab">
-    <div class="loca">
-      <p>Timezone : <%= @candidate.timezone %></p>
-      <p><b><%= @candidate.overlap %> overlap</b> with your team </p>
-      <div class="team-overlap">
-        <%= cl_image_tag @users[1].photo.key, height: 22, width: 22 %>
-        <div style="margin-left: 10px">
-          <p><b><%= rand(6..9) %> </b> hours with <%= @users[1].first_name %></p>
-        </div>
-      </div>
-      <div class="team-overlap">
-        <%= cl_image_tag @users[2].photo.key, height: 22, width: 22 %>
-        <div style="margin-left: 10px">
-          <p><b><%= rand(6..9) %></b> hours with <%= @users[2].first_name %></p>
-        </div>
-      </div>
-      <div class="team-overlap">
-        <div>
-         🏠
-        </div>
-        <p style="margin-top: 4px; margin-left: 10px;"><b><%= rand(6..9) %></b> hours with HQ </p>
-      </div>
-    </div>
-      <%= cl_image_tag("Line_6_u4e9nl", width: 280, style: 'margin-left: 15px') %>
-    <div class="loca">
-      <h5 style="font-size: 15px">Compensation</h5>
-      <p>💵 Expected : <b> $ <%= @candidate.expected_wage %> K </b><small>(- <%= rand(1..15)%> % of your global floor)</small></p>
-      <p>📏 Area median : <%= @candidate.area_median %> </p>
-      <p>🗓 Notice period : <%= @candidate.notice_period %> </p>
-    </div>
-      <%= cl_image_tag("Line_6_u4e9nl", width: 280, style: 'margin-left: 15px') %>
-    <div class="loca">
-      <h5 style="font-size: 15px">Benefits</h5>
-      <p>🚑 <%= @candidate.healthcare %><small>(average cost $2K month)</small></p>
-      <p>👴 <%= @candidate.other_benefits %> </p>
-    <%= cl_image_tag("Line_6_u4e9nl", width: 280, style: 'margin-left: 15px') %>
-    </div>
-    <div class="loca">
-      <h5 style="font-size: 15px">Tech hub</h5>
-      <p> <%= @tech_hubs.first.name %> <small>(<%= rand(1..3)%> matchs)</small></p>
-       <%# @tech.hubs.each do | hub| %>
-          <%# hub.competitors.each do | competitor | %>
-        <div>
-          <%#= cl_image_tag competitor.photo.key, height: 22, width: 22 %>
-        </div>
-         <%#end %>
-       <%#end %>
-    </div>
-  </div>
-  <div class="tab-pane fade" id="pills-skills" role="tabpanel" aria-labelledby="pills-home-tab">
-    <div class="staks">
-          <% @candidate.languages.each do |language | %>
-              <div class="stack">
-                <p><%= language %></p>
-              </div>
-            <% end  %>
-          </div>
-                      <div class="staks">
-                      <% @candidate.tools.each do |tool| %>
-                      <div class="stack" style="background-color: #EDEAFA">
-                      <p style="color: black"><%= tool %></p>
-                    </div>
-                  <% end  %>
-              </div>
 
-    <div class="loca">
-      <h5 style="font-size: 15px; padding-top: 30px">Challenges</h5>
-      <% @candidate.challenges.each_with_index do | challenge, index | %>
-        <p><%= index + 1 %> - <%= challenge.description %></p>
-        <%= cl_image_tag("Line_6_u4e9nl", width: 280, style: 'margin-left: 15px') %>
-      <% end  %>
+
+  <div class="choices">
+    <button1 type="button" class="choice" data-toggle="modal" data-target="#exampleModalCenter">
+      Export to ATS <i class="fas fa-paper-plane"></i>
+    </button1>
+    <%= link_to save_candidate_path(@candidate), method: :post, class: 'choice' ,id: 'dis' do %> Share <i class="fas fa-link"></i><% end  %>
+    <%= link_to archive_candidate_path(@candidate), method: :post, class: 'choice' ,id: 'dis' do %> Archive <i class="fas fa-archive"></i><% end %>
   </div>
-  <div class="loca">
-    <h5 style="font-size: 15px; padding-top: 30px">Soft skills </h5>
-    <p> <i class="fas fa-user-friends"></i>Worked with : <%= @candidate.softskills %></p>
-    <p><i class="fas fa-tasks"></i> <%= @candidate.practice %></p>
-  </div>
-</div>
-<div class="tab-pane fade" id="pills-expectations" role="tabpanel" aria-labelledby="pills-home-tab">
-  <div class="loca">
-    <h5 style="font-size: 15px; padding-top: 30px">Next technical steps</h5>
-    <p> <%= @candidate.next_steps %></p>
-    <%= cl_image_tag("Line_6_u4e9nl", width: 280, style: 'margin-left: 15px') %>
-    <p style="color: #777581">Stacks and tools to explore</p>
-  </div>
+  <div class="profile-nav">
+  <ul class="nav">
+    <li class="nav-item">
+      <a class="nav-link active" id="pills-contact-tab" data-toggle="pill" href="#pills-location" role="tab" aria-controls="pills-home" aria-selected="true">Location</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-skills" role="tab" aria-controls="pills-profile" aria-selected="false">Skills</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-expectations" role="tab" aria-controls="pills-contact" aria-selected="false">Expectations</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-background" role="tab" aria-controls="pills-contact" aria-selected="false">Background</a>
+    </li>
+  </ul>
   <%= cl_image_tag("Line_6_u4e9nl", width: 280, style: 'margin-left: 15px') %>
-  <div class="loca">
-    <h5 style="font-size: 15px; padding-top: 30px">Next career steps</h5>
-    <p> <%= @candidate.next_job %></p>
   </div>
-</div>
-  <div class="tab-pane fade" id="pills-background" role="tabpanel" aria-labelledby="pills-home-tab">
+  <div class="tab-content" id="pills-tabContent">
+    <div class="tab-pane fade show active" id="pills-location" role="tabpanel" aria-labelledby="pills-home-tab">
       <div class="loca">
-        <h5 style="font-size: 15px; padding-top: 30px">Work experience</h5>
-        <% @candidate.jobs.each do | job | %>
-          <div class="fomer-job" style="
-    display: flex;
-    justify-content: flex-start;">
-            <div>
-              <%= cl_image_tag job.photo.key, height: 50, width: 50, crop: :fit %>
-            </div>
-            <div class="job-desc">
-              <p><b> <%= job.company_name %></b></p>
-              <p> <%= job.years %></p>
-              <p><%= job.title %></p>
-            </div>
+        <p>Timezone : <%= @candidate.timezone %></p>
+        <p><b><%= @candidate.overlap %> overlap</b> with your team </p>
+        <div class="team-overlap">
+          <%= cl_image_tag @users[1].photo.key, height: 22, width: 22 %>
+          <div style="margin-left: 10px">
+            <p><b><%= rand(6..9) %> </b> hours with <%= @users[1].first_name %></p>
           </div>
+        </div>
+        <div class="team-overlap">
+          <%= cl_image_tag @users[2].photo.key, height: 22, width: 22 %>
+          <div style="margin-left: 10px">
+            <p><b><%= rand(6..9) %></b> hours with <%= @users[2].first_name %></p>
+          </div>
+        </div>
+        <div class="team-overlap">
+          <div>
+           🏠
+          </div>
+          <p style="margin-top: 4px; margin-left: 10px;"><b><%= rand(6..9) %></b> hours with HQ </p>
+        </div>
+      </div>
+        <%= cl_image_tag("Line_6_u4e9nl", width: 280, style: 'margin-left: 15px') %>
+      <div class="loca">
+        <h5 style="font-size: 15px">Compensation</h5>
+        <p>💵 Expected : <b> $ <%= @candidate.expected_wage %> K </b><small>(- <%= rand(1..15)%> % of your global floor)</small></p>
+        <p>📏 Area median : <%= @candidate.area_median %> </p>
+        <p>🗓 Notice period : <%= @candidate.notice_period %> </p>
+      </div>
+        <%= cl_image_tag("Line_6_u4e9nl", width: 280, style: 'margin-left: 15px') %>
+      <div class="loca">
+        <h5 style="font-size: 15px">Benefits</h5>
+        <p>🚑 <%= @candidate.healthcare %><small>(average cost $2K month)</small></p>
+        <p>👴 <%= @candidate.other_benefits %> </p>
+      <%= cl_image_tag("Line_6_u4e9nl", width: 280, style: 'margin-left: 15px') %>
+      </div>
+      <div class="loca">
+        <h5 style="font-size: 15px">Tech hub</h5>
+        <p> <%= @tech_hubs.first.name %> <small>(<%= rand(1..3)%> matchs)</small></p>
+         <%# @tech.hubs.each do | hub| %>
+            <%# hub.competitors.each do | competitor | %>
+          <div>
+            <%#= cl_image_tag competitor.photo.key, height: 22, width: 22 %>
+          </div>
+           <%#end %>
+         <%#end %>
+      </div>
+    </div>
+    <div class="tab-pane fade" id="pills-skills" role="tabpanel" aria-labelledby="pills-home-tab">
+      <div class="staks">
+            <% @candidate.languages.each do |language | %>
+                <div class="stack">
+                  <p><%= language %></p>
+                </div>
+              <% end  %>
+            </div>
+                        <div class="staks">
+                        <% @candidate.tools.each do |tool| %>
+                        <div class="stack" style="background-color: #EDEAFA">
+                        <p style="color: black"><%= tool %></p>
+                      </div>
+                    <% end  %>
+                </div>
+
+      <div class="loca">
+        <h5 style="font-size: 15px; padding-top: 30px">Challenges</h5>
+        <% @candidate.challenges.each_with_index do | challenge, index | %>
+          <p><%= index + 1 %> - <%= challenge.description %></p>
           <%= cl_image_tag("Line_6_u4e9nl", width: 280, style: 'margin-left: 15px') %>
         <% end  %>
     </div>
+    <div class="loca">
+      <h5 style="font-size: 15px; padding-top: 30px">Soft skills </h5>
+      <p> <i class="fas fa-user-friends"></i>Worked with : <%= @candidate.softskills %></p>
+      <p><i class="fas fa-tasks"></i> <%= @candidate.practice %></p>
+    </div>
+  </div>
+  <div class="tab-pane fade" id="pills-expectations" role="tabpanel" aria-labelledby="pills-home-tab">
+    <div class="loca">
+      <h5 style="font-size: 15px; padding-top: 30px">Next technical steps</h5>
+      <p> <%= @candidate.next_steps %></p>
+      <%= cl_image_tag("Line_6_u4e9nl", width: 280, style: 'margin-left: 15px') %>
+      <p style="color: #777581">Stacks and tools to explore</p>
+    </div>
+    <%= cl_image_tag("Line_6_u4e9nl", width: 280, style: 'margin-left: 15px') %>
+    <div class="loca">
+      <h5 style="font-size: 15px; padding-top: 30px">Next career steps</h5>
+      <p> <%= @candidate.next_job %></p>
+    </div>
+  </div>
+    <div class="tab-pane fade" id="pills-background" role="tabpanel" aria-labelledby="pills-home-tab">
+        <div class="loca">
+          <h5 style="font-size: 15px; padding-top: 30px">Work experience</h5>
+          <% @candidate.jobs.each do | job | %>
+            <div class="fomer-job" style="
+      display: flex;
+      justify-content: flex-start;">
+              <div>
+                <%= cl_image_tag job.photo.key, height: 50, width: 50, crop: :fit %>
+              </div>
+              <div class="job-desc">
+                <p><b> <%= job.company_name %></b></p>
+                <p> <%= job.years %></p>
+                <p><%= job.title %></p>
+              </div>
+            </div>
+            <%= cl_image_tag("Line_6_u4e9nl", width: 280, style: 'margin-left: 15px') %>
+          <% end  %>
+      </div>
+    </div>
   </div>
 </div>
 
 
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="mod-title">
+        <h5 class="modal-title" id="exampleModalLongTitle">Send a message <br> to <%= @candidate.first_name + " " + @candidate.last_name  %> </h5>
+          <p>Start a conversation in order to add  <%= @candidate.first_name + " " %>to your ATS</p>
+      <div style="margin-top: 5px">
+      <%= cl_image_tag @users.first.photo.key, height: 35, width: 35, style: "z-index: 1" %>
+      <%= cl_image_tag @candidate.photo.key, height: 35, width: 35, style: "margin-left: -10px;" %>
+    </div>
+      </div>
 
+      <div class="modal-body">
+        <textarea id="description" placeholder="Type a relevant message to <%= @candidate.first_name %> "></textarea>
+      <hr>
+        <p>Add internal feedback note in Lever </p>
+        <textarea id="text2" placeholder="Tag @team members and add comments directly in Lever"></textarea>
 
+      <div class="mod-footer">
+      <button1 type="button" class="choice" id='dis' data-dismiss="modal">Cancel </button1>
+      <%= link_to export_candidate_path(@candidate), method: :post do %>
+            <button1 type="button" class="choice" data-dismiss="modal" id="starting">
+              Start conversation <i class="fas fa-paper-plane"></i>
+            </button1>
+      <% end %>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 <style>
+
+.alert {
+  text-align: center;
+  margin-right: 450px;
+  margin-bottom: 700px;
+}
+
+.alert p {
+  font-size: 10px;
+}
+
+.mod-footer {
+  margin-top: 10px;
+  text-align: center;
+}
+
+
+.mod-title {
+  text-align: center;
+}
+
+textarea {
+  padding: 10px;
+  border: none;
+  outline: none;
+  font-size: 10px;
+  width: 98%;
+  height: 150px;
+  background-color: #F0F0F1;
+}
+
+#text2 {
+  border: none;
+  outline: none;
+  font-size: 10px;
+  width: 98%;
+  height: 60px;
+  background-color: #F0F0F1;
+}
+
+.modal-content {
+  border-radius: 10px;
+}
+
+.modal-content {
+  padding-top: 60px;
+  padding-bottom: 60px;
+  padding-left: 30px;
+  padding-right: 30px;
+
+}
+
+.modal p {
+  font-size: 10px;
+}
+
+p {
+  color: #090131;
+}
+
+h5 {
+  color: #090131;
+}
+
 
 .job-desc {
   margin-left: 10px;
@@ -211,6 +314,7 @@ small {
 
 .tab-pane {
   padding-right: 20px;
+  padding-left: 10px;
 }
 
 #pills-location p {
@@ -222,6 +326,7 @@ small {
   font-size: 10px;
   margin-top: 15px;
   margin-bottom: 0px ;
+  padding-left: 10px;
 }
 
 #pills-contact-tab {
@@ -229,7 +334,7 @@ small {
 }
 
 .choices {
-  padding-left: 15px;
+  padding-left: 25px;
 }
 
 .choice {
@@ -260,7 +365,7 @@ small {
 
 .info-pro p {
   font-size: 12px;
-  margin-bottom: 0px !important;
+  margin-bottom: 9px !important;
   color: #777581;
 }
 
@@ -273,14 +378,21 @@ small {
   color: #090131;
 }
 
+.id-info {
+  margin-left: 10px;
+}
 
-
-
-
-
-
-
-
-
+.show {
+  display: block i !important;
+}
 
 </style>
+
+<script>
+  const starting = document.getElementById("starting");
+const alert1 = document.getElementById("alert-success");
+  starting.addEventListener("click", (event) => {
+    alert1.classList.toggle("show");
+  });
+
+</script>

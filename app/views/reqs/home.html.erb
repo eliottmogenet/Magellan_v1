@@ -1,7 +1,12 @@
 
 
-  <% @reqs.each do |req| %>
-  <div class="req_box">
+
+<div class="req_box">
+   <p><i class="fas fa-user fa-fw"></i><%= @reqs.first.title %></p>
+</div>
+
+  <% @reqs.drop(1).each do |req| %>
+  <div class="req_box1">
    <p><i class="fas fa-user fa-fw"></i><%= req.title %></p>
    </div>
   <% end %>

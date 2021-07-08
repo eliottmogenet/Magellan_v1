@@ -1,0 +1,241 @@
+
+
+
+<div class="row">
+    <div class="col-2" style="background-color: #090131">
+      <div class="head">
+        <%= cl_image_tag("Group_2_vnmtnk", width: 124, height: 45, style: 'margin-top: 26px; margin-left: 20px;') %>
+      </div>
+    </div>
+    <div class="col-10">
+      <div class="ats-head">
+        <h4>Connect your ATS </h4>
+        <p>Choose your ATS to start using Magellan</p>
+      </div>
+    <div class="atss">
+      <div class="ats" data-toggle="modal" data-target="#exampleModalCenter">
+        <div class="logoo">
+          <%= cl_image_tag("lever_logo_1_bt5iu5", width: 140, height: 40) %>
+        </div>
+        <div class="desc-ats">
+          <h5>Lever</h5>
+          <p>Export profiles from Magellan to Lever in one click </p>
+        </div>
+      </div>
+
+      <div class="ats" data-toggle="modal" data-target="#exampleModalCenter">
+        <div class="logoo">
+          <%= cl_image_tag("2197153_1_x3mvwg", width: 40, height: 40) %>
+        </div>
+        <div class="desc-ats">
+          <h5>Workable</h5>
+          <p>Export profiles from Magellan to Workable in one click </p>
+        </div>
+      </div>
+
+      <div class="ats" data-toggle="modal" data-target="#exampleModalCenter">
+        <div class="logoo">
+         <%= cl_image_tag("greenhouse-logo-freelogovectors.net__hmzdi4", width: 15, height: 35) %>
+        </div>
+        <div class="desc-ats">
+          <h5>Greenhouse</h5>
+          <p>Export profiles from Magellan to Greenhouse in one click </p>
+        </div>
+      </div>
+
+      <div class="ats" data-toggle="modal" data-target="#exampleModalCenter">
+        <div class="logoo">
+          <%= cl_image_tag("recruitee", width: 130, height: 35) %>
+        </div>
+        <div class="desc-ats">
+          <h5>Recruitee</h5>
+          <p>Export profiles from Magellan to Recruitee in one click </p>
+        </div>
+      </div>
+
+      <div class="ats" data-toggle="modal" data-target="#exampleModalCenter">
+        <div class="logoo">
+          <%= cl_image_tag("teamtailor_eb16dq", width: 130, height: 33) %>
+        </div>
+        <div class="desc-ats">
+          <h5>Teamtailor</h5>
+          <p>Export profiles from Magellan to Teamtailor in one click </p>
+        </div>
+      </div>
+    </div>
+    </div>
+</div>
+
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="mod-title">
+        <h4 class="modal-title" id="exampleModalLongTitle">Import your Reqs </h4>
+          <p style="margin-top: 5px">Select by posting owner <i class="fas fa-chevron-down"></i></p>
+      <div class="guy" style="margin-top: 5px">
+        <div class="user-select-photo">
+          <%= cl_image_tag @users.first.photo.key, height: 35, width: 35 %>
+        </div>
+        <div class="user-info">
+        <p><%= @users.first.first_name %> <%= @users.first.last_name %> </p>
+        <p style="margin-top: -15px"><%= @users.first.job %><br>
+        </div>
+    </div>
+      </div>
+
+      <div class="modal-body">
+
+        <% @reqs.each do |req| %>
+         <%= cl_image_tag("Line_81_vjrh7z", width: 400, height: 1) %>
+         <div class="reqi">
+            <%= cl_image_tag("check-square-solid_1_1_rtbyof", width: 10, height: 11) %><p id="tit"><%= req.title %></p>
+         </div>
+        <% end  %>
+
+      <div class="mod-footer">
+            <%= link_to new_req_path do %>
+            <button1 type="button" class="choice" id="starting">
+              Import 4 Reqs
+            </button1>
+          <% end %>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+
+.ats:hover {
+    background-color: #EDEAFA;
+    cursor: pointer;
+}
+
+.user-info {
+  margin-left: 10px;
+}
+
+.guy {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.choice {
+  color: white;
+  padding: 10px;
+  background-color: #4175FE;
+  border-radius: 5px;
+  font-size: 10px;
+  margin-right: 10px;
+  outline: none;
+}
+
+.choice:hove {
+  outline: none;
+  text-decoration: none;
+}
+
+#tit {
+  margin-left: 10px;
+}
+
+.reqi {
+  display: flex;
+  justify-content: flex-start;
+}
+
+
+h4 {
+  color: #777581;
+  padding-top: 20px;
+}
+
+
+#exampleModalLongTitle {
+    color: #090131;
+
+}
+
+h5 {
+  color: #090131;
+}
+
+p {
+  color: #090131;
+  font-size: 10px;
+}
+
+.ats-head {
+  margin-left: 20px;
+}
+
+.ats {
+  padding: 25px;
+  background-color: white;
+  width: 300px;
+  height: 200px;
+  border-radius: 10px;
+  margin-right: 20px;
+  margin-top: 20px;
+}
+
+.ats:hover {
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.desc-ats {
+  margin-top: 20px;
+}
+
+
+.atss {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: start;
+  margin-left: 20px;
+}
+
+
+.mod-footer {
+  margin-top: 10px;
+  text-align: center;
+}
+
+
+textarea {
+  padding: 10px;
+  border: none;
+  outline: none;
+  font-size: 10px;
+  width: 98%;
+  height: 150px;
+  background-color: #F0F0F1;
+}
+
+#text2 {
+  border: none;
+  outline: none;
+  font-size: 10px;
+  width: 98%;
+  height: 60px;
+  background-color: #F0F0F1;
+}
+
+.modal-content {
+  border-radius: 10px;
+}
+
+.modal-content {
+  padding-top: 60px;
+  padding-bottom: 60px;
+  padding-left: 50px;
+  padding-right: 50px;
+
+}
+
+.modal p {
+  font-size: 10px;
+}
+
+
+</style>

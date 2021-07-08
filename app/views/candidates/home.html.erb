@@ -1,8 +1,8 @@
 
 
 <div class="head-candidates" style="padding-top: 26px;">
-  <h3>All candidates</h3>
-  <p><b><%= @candidates.count %></b> matching your search.</p>
+  <h3>Weekly inbox</h3>
+  <p><b><%= @candidates.count %></b> profiles this week</p>
 
 </div>
 <div class="candidate_nav">
@@ -11,10 +11,7 @@
     <a class="nav-link <%= 'active' if @candidate.status.include?("autre") or @candidate.status.include?("New")  %>" id="pills-contact-tab" data-toggle="pill" href="#pills-new" role="tab" aria-controls="pills-home" aria-selected="true">New(<%= @candidates.where(status: "New").count %>)</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link <%= 'active' if @candidate.status == 'Current' %>" id="pills-contact-tab" data-toggle="pill" href="#pills-current" role="tab" aria-controls="pills-profile" aria-selected="false">Started(<%= @candidates.where(status: "Current").count %>)                   </a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link <%= 'active' if @candidate.status == 'saved' %>" id="pills-contact-tab" data-toggle="pill" href="#pills-saved" role="tab" aria-controls="pills-contact" aria-selected="false">Saved (<%= @candidates.where(status: "saved").count %>)</a>
+    <a class="nav-link <%= 'active' if @candidate.status == 'Current' %>" id="pills-contact-tab" data-toggle="pill" href="#pills-current" role="tab" aria-controls="pills-profile" aria-selected="false">Started(<%= @candidates.where(status: "Current").count %>)</a>
   </li>
   <li class="nav-item">
     <a class="nav-link <%= 'active' if @candidate.status == 'archived' %>" id="pills-contact-tab" data-toggle="pill" href="#pills-archived" role="tab" aria-controls="pills-contact" aria-selected="false">Archived (<%= @candidates.where(status: "archived").count %>)</a>
@@ -25,28 +22,36 @@
 <div class="tab-content" id="pills-tabContent">
   <div class="tab-pane fade <%= 'show active' if @candidate.status.include?("autre") or  @candidate.status.include?("New")  %>" id="pills-new" role="tabpanel" aria-labelledby="pills-home-tab">
 
-                     <% @candidates.where(status: "New").each do |candidate| %>
-                  <%= link_to discover_candidate_path(candidate), method: :post do %>
-                    <div class="info new">
-                      <div class="box">
-                        <div class="elips">
-                          <%= cl_image_tag("Ellipse_9_mwigcd", width: 5, height: 5) %>
-                        </div>
-                        <div class="des">
-                          <div class="photo">
-                            <%= cl_image_tag candidate.photo.key, width: 55, height: 55 %>
-                          </div>
-                          <div class="description">
-                          <p id="name"><%= candidate.first_name + " " + candidate.last_name %><p>
-                          <p id= "job"><%= candidate.job %></p>
-                          <p id="location"><%= candidate.location %></p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <%= cl_image_tag("Line_6_u4e9nl", width: 320) %>
-               <% end %>
-              <% end  %>
+            <% @candidates.where(status: "New").each do |candidate| %>
+              <%= link_to map_candidate_path(candidate) do %>
+                <%= link_to select_candidate_path(candidate), method: :post do %>
+                <% if candidate.selected == true %>
+                  <div class="info actived">
+                  <div class="photo">
+                    <%= cl_image_tag candidate.photo.key, width: 55, height: 55 %>
+                  </div>
+                  <div class="description">
+                  <p id="name"><%= candidate.first_name + " " + candidate.last_name %><p>
+                  <p id= "job"><%= candidate.job %></p>
+                  <p id="location"><%= candidate.location %></p>
+                  </div>
+                </div>
+                <% elsif candidate.selected == false %>
+                  <div class="info">
+                  <div class="photo">
+                    <%= cl_image_tag candidate.photo.key, width: 55, height: 55 %>
+                  </div>
+                  <div class="description">
+                  <p id="name"><%= candidate.first_name + " " + candidate.last_name %><p>
+                  <p id= "job"><%= candidate.job %></p>
+                  <p id="location"><%= candidate.location %></p>
+                  </div>
+                </div>
+                <% end %>
+                <%= cl_image_tag("Line_6_u4e9nl", width: 320) %>
+            <% end %>
+           <% end %>
+          <% end %>
 
               <% @candidates.where(status: "autre").each do |candidate| %>
               <%= link_to map_candidate_path(candidate) do %>

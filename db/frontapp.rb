@@ -1,10 +1,3 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
 require 'open-uri'
 
 Company.destroy_all
@@ -19,26 +12,19 @@ Message.destroy_all
 
 p "creating company"
 
-company1 = Company.new(name: "Uber", industry: "Mobility", website: "https://www.youtube.com/embed/89uKzd3Wis0", languages: ["Ruby", "SQL"], description: "We're on a mission to build the best platform in the world for engineers to understand and scale their systems, applications, and teams.  We operate at high scale—trillions of data points per day—providing always-on alerting, metrics visualization, logs, and application tracing for tens of thousands of companies. Our engineering culture values pragmatism, honesty, and simplicity to solve hard problems the right way.", team: "The Revenue Data Engineering Teams designs, builds and runs the data pipelines and helper systems to accurately and timely manner quantify our customers’ usage across all Datadog products. This team is at the leading edge of any new product we release.", job_description: "As a Data Engineer within the Revenue & Growth group, you will work with Spark and big data tooling to build highly reliable, verifiably-accurate data processing pipelines for a large scale mission-critical process. This team ingests the full firehose of data we receive each day - literally trillions of data points and petabytes of data.")
-company1.photo.attach(io: File.open(File.join(Rails.root,'app/assets/images/uber.jpeg')), filename: 'uber.jpeg')
+company1 = Company.new(name: "Front", industry: "SAAS", website: "https://www.youtube.com/embed/EoVgTvHaiJA", languages: ["Ruby", "Python", "AWS"], description: "We're on a mission to build the best platform in the world for engineers to understand and scale their systems, applications, and teams.  We operate at high scale—trillions of data points per day—providing always-on alerting, metrics visualization, logs, and application tracing for tens of thousands of companies. Our engineering culture values pragmatism, honesty, and simplicity to solve hard problems the right way.", team: "The Revenue Data Engineering Teams designs, builds and runs the data pipelines and helper systems to accurately and timely manner quantify our customers’ usage across all Datadog products. This team is at the leading edge of any new product we release.", job_description: "As a Data Engineer within the Revenue & Growth group, you will work with Spark and big data tooling to build highly reliable, verifiably-accurate data processing pipelines for a large scale mission-critical process. This team ingests the full firehose of data we receive each day - literally trillions of data points and petabytes of data.")
+company1.photo.attach(io: File.open(File.join(Rails.root,'app/assets/images/front.png')), filename: 'front.png')
 #file = URI.open("[https://www.youtube.com/watch?v=880BUSam7nc](https://www.youtube.com/watch?v=880BUSam7nc)")
 #company1.video.attach(io: file, filename: 'video')
 company1.save!
 
 p "creating the req"
 
-req1 = Req.new(title: "Senior Backend", company: "Uber", languages: ["Ruby", "SQL"], tools:  ["Terraform", "Sidekiq", "SaltStack"], company_description: "We're on a mission to build the best platform in the world for engineers to understand and scale their systems, applications, and teams.  We operate at high scale—trillions of data points per day—providing always-on alerting, metrics visualization, logs, and application tracing for tens of thousands of companies. Our engineering culture values pragmatism, honesty, and simplicity to solve hard problems the right way.")
+req1 = Req.new(title: "Backend engineer", company: "Front", languages: ["Ruby", "Python", "Node.js"], tools:  ["AWS", "MySQL"], company_description: "We're on a mission to build the best platform in the world for engineers to understand and scale their systems, applications, and teams.  We operate at high scale—trillions of data points per day—providing always-on alerting, metrics visualization, logs, and application tracing for tens of thousands of companies. Our engineering culture values pragmatism, honesty, and simplicity to solve hard problems the right way.")
 req1.save!
-req2 = Req.new(title: "Ruby backend", company: "Uber", languages: ["Ruby", "SQL"], tools:  ["Terraform", "Sidekiq", "SaltStack"], company_description: "We're on a mission to build the best platform in the world for engineers to understand and scale their systems, applications, and teams.  We operate at high scale—trillions of data points per day—providing always-on alerting, metrics visualization, logs, and application tracing for tens of thousands of companies. Our engineering culture values pragmatism, honesty, and simplicity to solve hard problems the right way.")
-req2.save!
-req3 = Req.new(title: "Vue Js frontend", company: "Uber", languages: ["Ruby", "SQL"], tools:  ["Terraform", "Sidekiq", "SaltStack"], company_description: "We're on a mission to build the best platform in the world for engineers to understand and scale their systems, applications, and teams.  We operate at high scale—trillions of data points per day—providing always-on alerting, metrics visualization, logs, and application tracing for tens of thousands of companies. Our engineering culture values pragmatism, honesty, and simplicity to solve hard problems the right way.")
-req3.save!
-req4 = Req.new(title: "Data analyst", company: "Uber", languages: ["Ruby", "SQL"], tools:  ["Terraform", "Sidekiq", "SaltStack"], company_description: "We're on a mission to build the best platform in the world for engineers to understand and scale their systems, applications, and teams.  We operate at high scale—trillions of data points per day—providing always-on alerting, metrics visualization, logs, and application tracing for tens of thousands of companies. Our engineering culture values pragmatism, honesty, and simplicity to solve hard problems the right way.")
-req4.save!
-
 
 p "creating users"
-user1 = User.new(first_name: "Stella", last_name: "from Uber", job: "Tech recruiter", location: "Seoul - South Korea", email: "seb@lewagon.org", password: "seb@lewagon.org")
+user1 = User.new(first_name: "Ali", last_name: "Weinstein", job: "Tech recruiter", location: "Paris - France", email: "seb@lewagon.org", password: "seb@lewagon.org")
 user1.photo.attach(io: File.open(File.join(Rails.root,'app/assets/images/alison.png')), filename: 'alison.png')
 user1.save!
 user2 = User.new(first_name: "Cecile", last_name: "Soullier", job: "TA Manager", location: "Paris - France", email: "Jon@lewagon.org", password: "Jon@lewagon.org")
@@ -58,7 +44,7 @@ france.save!
 
 p "creating candidates"
 
-candidate1 = france.candidates.create(first_name: "Anna", last_name: "Sanchez", location: "Barcelona(🇪🇸)", job: "Ruby engineer", overlap: "≃ 7 hours" , healthcare: "Public healthcare (fixed fee)", other_benefits: "PTO | Marternity leave | 4 weeks annual vacation", area_median: "$60K", notice_period: "2 months",  timezone: "BST GMT-3", job_status: "Active", status: "New", next_steps: "I want to work in larger teams of experienced people, ready to support themselves and learn together, where processes are already in place. ", next_job: "Data scientist, Data engineer, ML/Data engineer", expected_wage: 55, softskills: "Able to learn fast in operating roles",practice: "Scrum, CL/CLI, Npm",  industry: "Saas", languages: ["Ruby", "Node.js"], tools: ["Redis", "MySQL", "Rails"], selected: false)
+candidate1 = france.candidates.create(first_name: "Anna", last_name: "Sanchez", location: "Barcelona(🇪🇸)", job: "Backend software engineer", overlap: "≃ 7 hours" , healthcare: "Public healthcare (fixed fee)", other_benefits: "PTO | Marternity leave | 4 weeks annual vacation", area_median: "$60K", notice_period: "2 months",  timezone: "BST GMT-3", job_status: "Active", status: "New", next_steps: "I want to work in larger teams of experienced people, ready to support themselves and learn together, where processes are already in place. ", next_job: "Data scientist, Data engineer, ML/Data engineer", expected_wage: 55, softskills: "Able to learn fast in operating roles",practice: "Scrum, CL/CLI, Npm",  industry: "Saas", languages: ["Ruby", "Node.js"], tools: ["Redis", "MySQL", "Rails"], selected: false)
 candidate1.photo.attach(io: File.open(File.join(Rails.root,'app/assets/images/candidate1.jpg')), filename: 'candidate1.jpg')
 candidate1.map.attach(io: File.open(File.join(Rails.root,'app/assets/images/134.png')), filename: '134.png')
 candidate1.save!
@@ -70,7 +56,7 @@ candidate3 = france.candidates.create(first_name: "Aurore", last_name: "Chan", l
 candidate3.photo.attach(io: File.open(File.join(Rails.root,'app/assets/images/candidate3.jpg')), filename: 'candidate3.jpg')
 candidate3.map.attach(io: File.open(File.join(Rails.root,'app/assets/images/133.png')), filename: '133.png')
 candidate3.save!
-candidate4 = france.candidates.create(first_name: "Mark", last_name: "Lundberg", location: "Amsterdam (🇳🇱)", job: "Ruby engineer", healthcare: "Public healthcare (27% fee)", other_benefits: "PTO (first 15 days) | Marternity leave (120 days) | 13th salary ", overlap: "≃ 7 hours",  area_median: "$40K", notice_period: "One month",  timezone: "BST GMT-3", job_status: "Active", status: "autre4", next_steps: "I want to join a create team of data engineer to continue processing datas", next_job:"Data scientist, Data engineer, ML/Data engineer", expected_wage: 47, softskills: "Managed a team of 5 people (datascientists)", practice: "TDD", industry: "Saas", languages: ["Vue.js", "Node.js"], tools: ["PostgreSQL", "MongoDB", "Docker"],  selected: false)
+candidate4 = france.candidates.create(first_name: "Mark", last_name: "Lundberg", location: "Amsterdam (🇳🇱)", job: "Node.js engineer", healthcare: "Public healthcare (27% fee)", other_benefits: "PTO (first 15 days) | Marternity leave (120 days) | 13th salary ", overlap: "≃ 7 hours",  area_median: "$40K", notice_period: "One month",  timezone: "BST GMT-3", job_status: "Active", status: "autre4", next_steps: "I want to join a create team of data engineer to continue processing datas", next_job:"Data scientist, Data engineer, ML/Data engineer", expected_wage: 47, softskills: "Managed a team of 5 people (datascientists)", practice: "TDD", industry: "Saas", languages: ["Vue.js", "Node.js"], tools: ["PostgreSQL", "MongoDB", "Docker"],  selected: false)
 candidate4.photo.attach(io: File.open(File.join(Rails.root,'app/assets/images/candidate4.jpg')), filename: 'candidate4.jpg')
 candidate4.map.attach(io: File.open(File.join(Rails.root,'app/assets/images/135.png')), filename: '135.png')
 candidate4.save!
@@ -188,5 +174,3 @@ job8.save!
 #candidate_stack1.save!
 
 p "finished"
-
-

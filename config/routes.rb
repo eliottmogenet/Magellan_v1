@@ -2,7 +2,11 @@ Rails.application.routes.draw do
   devise_for :users
   #root to: 'pages#home'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  resources :reqs
+  resources :reqs do
+    member do
+      get 'start', to: "reqs#start"
+    end
+  end
   resources :candidates do
       resources :chatrooms do
         resources :messages, only: :create
@@ -17,6 +21,7 @@ Rails.application.routes.draw do
       post 'select', to: "candidates#select"
       post 'save', to: "candidates#save"
       post 'archive', to: "candidates#archive"
+      post 'export', to: "candidates#export"
     end
   end
 end

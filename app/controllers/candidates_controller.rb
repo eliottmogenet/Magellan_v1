@@ -79,6 +79,17 @@ class CandidatesController < ApplicationController
     redirect_to map_candidate_path(@next_candidate)
   end
 
+  def export
+    @candidate = Candidate.find(params[:id])
+    @next_candidate = Candidate.find(params[:id].next)
+    @candidate.status = "Current"
+    @next_candidate.selected = true
+    @candidate.selected = false
+    @candidate.save
+    @next_candidate.save
+    redirect_to map_candidate_path(@next_candidate)
+  end
+
 
 
   #def tchat

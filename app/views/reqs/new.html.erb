@@ -12,19 +12,34 @@
         <%= cl_image_tag("Group_2_vnmtnk", width: 124, height: 45, style: 'margin-top: 26px; margin-left: 20px;') %>
       </div>
       <div>
-        <div id="list-example" class="nav nav-pills flex-column">
-          <a class="nav-link" href="#list-item-1">Tech Hubs</a>
-          <a class="nav-link" href="#list-item-2">Team</a>
-          <a class="nav-link" href="#list-item-3">Job</a>
-          <a class="nav-link" href="#list-item-4">Launch</a>
-        </div>
+        <div class="candidate_nav" style="margin-left: 10px;">
+        <ul class="nav">
+        <li class="nav-item">
+          <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-new" role="tab" aria-controls="pills-home" aria-selected="true">Opened (0) </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active"  style="color: white" id="pills-contact-tab" data-toggle="pill" href="#pills-current" role="tab" aria-controls="pills-profile" aria-selected="false">To review (4)</a>
+        </li>
+      </ul>
+    </div>
+<%= cl_image_tag("Line_1_nwlm9y",
+          width: 200, height: 1, style: 'margin-left: 20px;') %>
+        <%= render template: "reqs/home" %>
       </div>
     </div>
     <div class="col-10">
       <div id="all" data-spy="scroll" data-target="#list-example" data-offset="0" class="scrollspy-example" style="color: black">
+            <div class="ats-head">
+          <div class="ats-title">
+            <h4 style="color:#090131; margin-left: 70px; margin-top: 20px"> <%= @reqs.first.title %> </h4><%= cl_image_tag @users.first.photo.key, height: 30, width: 30, style: "margin-top: 15px; margin-left: 10px" %>
+          </div>
+          <div class="bridge">
+            <p>To review</p>
+          </div>
+        </div>
           <div class="blanc" id="list-item-1">
-              <h4>Start your sourcing journey</h4>
-                <p style="font-size: 14px; font-weight: 550;">Choose the tech hubs you want to start with</p>
+              <h5 style="color:#777581;">Start your sourcing journey</h5>
+                <p style="font-size: 10px; font-weight: 550;">Choose the tech hubs you want to start with</p>
               <div class="checks">
                 <div class="form-check">
                   <input class="form-check-input" type="checkbox" value="" href="#list-item-2" id="defaultCheck1">
@@ -51,7 +66,7 @@
               <%= cl_image_tag("Group_8_j8irs6", width: 970, height: 632, class: "latam") %>
               <%= cl_image_tag("Group_14_3_b2xufp", width: 970, height: 632, class: "team-world") %>
               <%= cl_image_tag("Group_16_tgmih2", width: 970, height: 632, class: "canada") %>
-              <%= cl_image_tag("Group_18_lxvgu3", width: 970, height: 632, class: "usa-west") %>
+              <%= cl_image_tag("Group_139_rnsfdz", width: 970, height: 632, class: "usa-west") %>
               <div class="hubss">
                   <div class="carrd" id="tech1">
                     <b><%= @tech_hubs[0].name %></b>
@@ -97,17 +112,17 @@
                 <div class="col-3 number"><p class="titre">Few numbers</p><div class="kard">
                   <div class="numb">
                     <div class="num">
-                      <h5>2010</h5>
+                      <h5>2009</h5>
                       <p>founding year</p>
                     </div>
                     <div class="num">
-                      <h5>1800</h5>
+                      <h5>XX</h5>
                       <p>people </p>
                     </div>
                   </div>
                   <div class="numb">
                     <div class="num">
-                      <h5>NASDAQ</h5>
+                      <h5>NASDAG</h5>
                       <p>raised</p>
                     </div>
                     <div class="num">
@@ -172,8 +187,6 @@
                     <p><i class="fas fa-link"></i><textarea class="job" type="text" placeholder="Add a link "></textarea></p>
                     <p><i class="fas fa-link"></i><textarea class="job" type="text" placeholder="Add a link"></textarea></p>
                   </div>
-
-
                 </div>
                 </div>
             </div>
@@ -442,28 +455,59 @@
                 </div>
               </div>
               </div>
-              <div class="company" id="last"><p class="titre">Who will be part of the sourcing ?</p><div class="kard">
-                <p style="color: #4175FE; font-size: 10px" data-toggle="modal" data-target="#exampleModal">+ Add members of the team </p>
-                  <div class="sourcing-team">
-                      <% @users.drop(0).each do | user | %>
+         </div>
+      </div>
+    </div>
+    <div class="banniere">
+        <div class="ban1" style="margin-right: 20px; padding-top: 10px;">
+          <button2 data-toggle="modal" data-target="#exampleModalCenter">
+             <p style="color: #090131; font-size: 12px;">Ask for review <i class="fas fa-user-edit"></i></p>
+          </button2>
+        </div>
+        <div>
+        <a href="/candidates/<%= @candidates.first.id %>/map">
+            <button1 type="button" class="choice">
+              Start sourcing >
+            </button1>
+        </a>
+        </div>
+    </div>
+
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="mod-title">
+        <h4 class="modal-title" id="exampleModalLongTitle">Ask for review </h4>
+          <p style="margin-top: 5px"> Ask for a technical insight in your company to review the job description </p>
+            <%= cl_image_tag("Group_21_1_rfgjo4", width: 400, height: 30) %>
+                    <div>
+                      <% @users.each do | user | %>
+                        <%= cl_image_tag("Line_81_vjrh7z", width: 400, height: 1) %>
                       <div class="user-select">
                         <div class="user-select-photo">
                       <%= cl_image_tag user.photo.key, height: 35, width: 35 %>
                         </div>
-                        <div style="margin-left: 5px; margin-right: 10px;">
-                         <p><%= user.first_name %> <%= user.last_name %> </p>
-                         <p style="margin-top: -15px"><%= user.job %></p>
+                        <div>
+                         <p><%= user.first_name %> <%= user.last_name %>| <%= user.job %> </p>
+                         <p style="margin-top: -15px"><%= user.email %>
                         </div>
                       </div>
                   <% end  %>
-                    </div>
-              </div>
-            </div>
-            <a href="/candidates/<%= @candidates.first.id %>/map"><button id="next2">Launch 🚀</button></a>
-         </div>
+                     </div>
+
+      <p>Not yet added ? Ask them by email </p>
+        <%= cl_image_tag("Group_22_1_gfn5ke", width: 400, height: 30, style: "margin-top: 5px") %>
+        <%= cl_image_tag("Group_23_1_zzvtju", width: 274, height: 15) %>
+
+      <div class="mod-footer">
+            <button1 type="button" class="choice" id='dis' data-dismiss="modal">Cancel </button1>
+            <button1 type="button" class="choice" data-dismiss="modal" id="starting">
+              Ask for review
+            </button1>
       </div>
     </div>
-
+  </div>
+</div>
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -500,6 +544,97 @@
 </body>
 
 <style>
+
+.ban1:hover {
+    cursor: pointer;
+}
+
+#dis {
+  background-color: #F0F0F1;
+  color: #090131;
+}
+
+#dis:hover{
+  background-color: blue;
+  color: white;
+  text-decoration: none;
+}
+
+.mod-footer {
+  margin-top: 30px;
+  text-align: center;
+}
+
+
+.modal-content {
+  border-radius: 10px;
+}
+
+.modal-content {
+  padding-top: 60px;
+  padding-bottom: 60px;
+  padding-left: 50px;
+  padding-right: 50px;
+
+}
+
+
+.button2 p {
+  color: #090131;
+  font-size: 15px;
+}
+
+.choice {
+  color: white;
+  padding: 10px;
+  background-color: #4175FE;
+  border-radius: 5px;
+  font-size: 12px;
+  margin-right: 10px;
+}
+
+.choice:hover {
+  background-color: blue;
+  color: white;
+  text-decoration: none;
+}
+
+.banniere {
+  background-color: white;
+  height: 50px;
+  margin-left: -15px !important;
+  display: flex;
+  justify-content: flex-end;
+  padding: 5px;
+}
+
+.head {
+  margin-bottom: 20px;
+}
+
+.candidate-nav {
+  margin-left: 20px;
+}
+
+.bridge {
+width: 73px;
+height: 19px;
+background: #F49B9B;
+border-radius: 5px;
+padding: 3px;
+padding-bottom: 10px;
+padding-left: 10px;
+margin-left: 70px;
+}
+
+.bridge p {
+font-size: 10px;
+}
+
+.ats-title {
+  display: flex;
+  justify-content: flex-start;
+}
 
 #tool-stack {
   background-color: #EDEAFA;
@@ -696,7 +831,7 @@ select {
 }
 
 #list-item-1 {
-  padding-top: 40px;
+  padding-top: 60px;
 }
 
 .goals {
@@ -901,7 +1036,7 @@ label {
 
   .blanc {
     height: 800px;
-    padding-top: 200px;
+    padding-top: 90px;
     padding-left: 70px;
   }
 
@@ -910,7 +1045,7 @@ label {
   }
 
 #all {
-  height: 800px;
+  height: 770px;
   overflow-y: scroll;
 }
 
@@ -963,7 +1098,7 @@ label {
 
 
 #list-item-3 {
-  margin-top: 200px!important;
+  margin-top: 90px!important;
 }
 
 .back {

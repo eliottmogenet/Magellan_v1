@@ -18,7 +18,7 @@ html, body {margin: 0; height: 100%; overflow: hidden}
 }
 
 .list {
-  display: flex;
+
   justify-content: center;
   margin-top: 20px;
 }
@@ -35,6 +35,7 @@ i {
 }
 
 .req_box {
+  color: white !important;
   margin-left: 20px;
   background-color: #282341;
   width: 201px;
@@ -45,10 +46,29 @@ i {
   line-height: 38px;
 
   p {
+    color: white !important;
     font-size: 11px;
     margin-left: 20px;
   }
 }
+
+.req_box1 {
+  color: white !important;
+  margin-left: 20px;
+  width: 201px;
+  height: 38px;
+  border-radius: 10px;
+  text-align: left;
+  vertical-align: middle;
+  line-height: 38px;
+
+  p {
+    color: white !important;
+    font-size: 11px;
+    margin-left: 20px;
+  }
+}
+
 
 button {
   margin-left: 20px;

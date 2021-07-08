@@ -8,22 +8,31 @@
         <div class="req_header">
           <button> <%= link_to "+ Open new Req", new_req_path, style: "color: white; text-decoration: none;" %></button>
         </div>
-        <%= cl_image_tag("Group_3_qaughh",
-          width: 200, height: 31, style: 'margin-left: 20px;') %>
-        <div class="list">
-          <%= render template: "reqs/home" %>
-        </div>
+              <div>
+        <div class="candidate_nav" style="margin-left: 10px;">
+        <ul class="nav">
+        <li class="nav-item">
+          <a class="nav-link" style="color: white" id="pills-contact-tab" data-toggle="pill" href="#pills-new" role="tab" aria-controls="pills-home" aria-selected="true">Opened (4) </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" id="pills-contact-tab" data-toggle="pill" href="#pills-current" role="tab" aria-controls="pills-profile" aria-selected="false">To review (0)</a>
+        </li>
+      </ul>
+    </div>
+<%= cl_image_tag("Line_1_nwlm9y",
+          width: 200, height: 1, style: 'margin-left: 20px;') %>
+        <%= render template: "reqs/home" %>
+      </div>
       </div>
       <div class="col-3" style="background-color: #FFFFFF">
         <%= render template: "candidates/home" %>
       </div>
       <div class="col-7">
-        <%= render "shared/navbar" %>
       <div class="row">
-        <div class="col-7 mapp">
+        <div class="col-6 mapp">
           <%= cl_image_tag @candidate.map.key, height:733, width: 439 %>
         </div>
-        <div class="col-5 profile">
+        <div class="col-6 profile">
           <%= render template: "candidates/profile2" %>
         </div>
       </div>
